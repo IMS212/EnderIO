@@ -5,6 +5,7 @@ import com.enderio.conduits.common.conduit.block.ConduitBundleBlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import java.util.Map;
+import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -30,10 +31,15 @@ public class ConduitFacadeRendering {
     static void renderFacade(AddSectionGeometryEvent event) {
         Map<BlockPos, BlockState> facades = new Object2ObjectOpenHashMap<>();
 
-        for (Map.Entry<BlockPos, BlockState> entry : ConduitBundleBlockEntity.FACADES.entrySet()) {
-            if (SectionPos.of(entry.getKey()).equals(SectionPos.of(event.getSectionOrigin()))) {
-                facades.put(entry.getKey(), entry.getValue());
-            }
+        Set<BlockPos> blockList = ConduitBundleBlockEntity.CHUNK_FACADES
+                .getOrDefault(SectionPos.asLong(event.getSectionOrigin()), null);
+
+        if (blockList == null) {
+            return;
+        }
+
+        for (BlockPos entry : blockList) {
+            facades.put(entry, ConduitBundleBlockEntity.FACADES.get(entry.asLong()));
         }
 
         if (facades.isEmpty())

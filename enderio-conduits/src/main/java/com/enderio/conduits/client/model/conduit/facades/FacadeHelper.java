@@ -2,8 +2,6 @@ package com.enderio.conduits.client.model.conduit.facades;
 
 import com.enderio.conduits.common.conduit.block.ConduitBundleBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
-import java.util.HashSet;
-import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.SectionPos;
 
@@ -14,13 +12,10 @@ public class FacadeHelper {
 
     public static void setFacadesVisible(boolean visible) {
         if (visible != FACADES_VISIBLE) {
-            Set<SectionPos> facadeSections = new HashSet<>();
-
-            ConduitBundleBlockEntity.FACADES.keySet().forEach((pos) -> facadeSections.add(SectionPos.of(pos)));
-
             RenderSystem.recordRenderCall(() -> {
-                facadeSections.forEach((section) -> {
-                    Minecraft.getInstance().levelRenderer.setSectionDirty(section.x(), section.y(), section.z());
+                ConduitBundleBlockEntity.CHUNK_FACADES.keySet().forEach((section) -> {
+                    Minecraft.getInstance().levelRenderer.setSectionDirty(SectionPos.x(section), SectionPos.y(section),
+                            SectionPos.z(section));
                 });
             });
         }

@@ -17,7 +17,7 @@ public class BlockRenderDispatcherMixin {
     @WrapOperation(method = "renderBreakingTexture(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/BlockAndTintGetter;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/neoforged/neoforge/client/model/data/ModelData;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/block/BlockModelShaper;getBlockModel(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/client/resources/model/BakedModel;"))
     public BakedModel enderio$checkFacades(BlockModelShaper instance, BlockState state, Operation<BakedModel> original,
             BlockState localState, BlockPos pos, BlockAndTintGetter level) {
-        BlockState facadeState = ConduitBundleBlockEntity.FACADES.getOrDefault(pos, null);
+        BlockState facadeState = ConduitBundleBlockEntity.FACADES.getOrDefault(pos.asLong(), null);
 
         return original.call(instance, facadeState == null ? state : facadeState);
     }

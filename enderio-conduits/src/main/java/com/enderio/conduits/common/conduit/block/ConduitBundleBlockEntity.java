@@ -29,6 +29,9 @@ import com.enderio.conduits.common.menu.ConduitMenu;
 import com.enderio.core.common.blockentity.EnderBlockEntity;
 import dev.gigaherz.graph3.Graph;
 import dev.gigaherz.graph3.GraphObject;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,6 +46,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.SectionPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -79,7 +83,8 @@ public class ConduitBundleBlockEntity extends EnderBlockEntity {
     public static final String CONDUIT_INV_KEY = "ConduitInv";
 
     @UseOnly(LogicalSide.CLIENT)
-    public static final Map<BlockPos, BlockState> FACADES = new HashMap<>();
+    public static final Long2ObjectMap<BlockState> FACADES = new Long2ObjectOpenHashMap<>();
+    public static final Long2ObjectMap<Set<BlockPos>> CHUNK_FACADES = new Long2ObjectOpenHashMap<>();
 
     private final ConduitShape shape = new ConduitShape();
 
@@ -120,9 +125,15 @@ public class ConduitBundleBlockEntity extends EnderBlockEntity {
             requestModelDataUpdate();
             level.setBlocksDirty(getBlockPos(), Blocks.AIR.defaultBlockState(), getBlockState());
             if (bundle.hasFacade()) {
-                FACADES.put(worldPosition, bundle.facade().get().defaultBlockState());
+                FACADES.put(worldPosition.asLong(), bundle.facade().get().defaultBlockState());
+                CHUNK_FACADES.computeIfAbsent(SectionPos.asLong(worldPosition), p -> new ObjectOpenHashSet<>())
+                        .add(worldPosition);
             } else {
-                FACADES.remove(worldPosition);
+                FACADES.remove(worldPosition.asLong());
+                Set<BlockPos> chunkList = CHUNK_FACADES.getOrDefault(SectionPos.asLong(worldPosition), null);
+                if (chunkList != null) {
+                    chunkList.remove(worldPosition);
+                }
             }
         }
     }
@@ -217,7 +228,8 @@ public class ConduitBundleBlockEntity extends EnderBlockEntity {
             ConduitSavedData savedData = ConduitSavedData.get(serverLevel);
             bundle.getConduits().forEach(type -> onChunkUnloaded(savedData, type));
         } else {
-            FACADES.remove(worldPosition);
+            CHUNK_FACADES.remove(SectionPos.asLong(worldPosition));
+            FACADES.remove(worldPosition.asLong());
         }
     }
 
