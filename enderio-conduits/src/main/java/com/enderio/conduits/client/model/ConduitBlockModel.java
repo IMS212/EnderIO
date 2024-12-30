@@ -71,28 +71,14 @@ public class ConduitBlockModel implements IDynamicBakedModel {
 
         List<BakedQuad> quads = new ArrayList<>();
         ConduitBundle conduitBundle = extraData.get(ConduitBundleBlockEntity.BUNDLE_MODEL_PROPERTY);
-        ModelData data = extraData.get(ConduitBundleBlockEntity.FACADE_MODEL_DATA);
 
         if (conduitBundle != null) {
             if (FacadeHelper.areFacadesVisible()) {
-                IQuadTransformer transformer = quad -> quad.tintIndex = ConduitFacadeColor
-                        .moveTintIndex(quad.getTintIndex());
-                Optional<Block> facadeOpt = conduitBundle.facade();
-                if (facadeOpt.isPresent()) {
-                    BlockState facade = facadeOpt.get().defaultBlockState();
-                    var model = Minecraft.getInstance().getBlockRenderer().getBlockModel(facade);
-                    var facadeQuads = model.getQuads(facade, side, rand, data, renderType);
-
-                    if (renderType != null && model.getRenderTypes(facade, rand, data).contains(renderType)) {
-                        quads.addAll(transformer.process(facadeQuads));
-                    }
-                }
-
                 // If the facade should hide the conduits, escape early.
                 if (conduitBundle.hasFacade()) {
                     boolean areConduitsHidden = conduitBundle.facadeType()
-                            .map(FacadeType::doesHideConduits)
-                            .orElse(false);
+                        .map(FacadeType::doesHideConduits)
+                        .orElse(false);
 
                     if (areConduitsHidden) {
                         return quads;
@@ -340,12 +326,7 @@ public class ConduitBlockModel implements IDynamicBakedModel {
     @Override
     public ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand,
             @NotNull ModelData data) {
-        ChunkRenderTypeSet facadeRenderTypes = data.get(ConduitBundleBlockEntity.FACADE_RENDERTYPE);
-        ChunkRenderTypeSet renderTypes = ChunkRenderTypeSet.of(RenderType.cutout());
-        if (facadeRenderTypes != null) {
-            renderTypes = ChunkRenderTypeSet.union(renderTypes, facadeRenderTypes);
-        }
-        return renderTypes;
+        return ChunkRenderTypeSet.of(RenderType.cutout());
     }
 
     @Override
