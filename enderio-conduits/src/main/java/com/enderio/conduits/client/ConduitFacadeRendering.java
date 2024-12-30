@@ -3,9 +3,8 @@ package com.enderio.conduits.client;
 import com.enderio.conduits.client.model.conduit.facades.FacadeHelper;
 import com.enderio.conduits.common.conduit.block.ConduitBundleBlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import java.util.Map;
-
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import java.util.Map;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -24,7 +23,8 @@ import net.neoforged.neoforge.client.model.pipeline.VertexConsumerWrapper;
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ConduitFacadeRendering {
 
-    private static final ThreadLocal<RandomSource> RANDOM = ThreadLocal.withInitial(() -> new SingleThreadedRandomSource(42L));
+    private static final ThreadLocal<RandomSource> RANDOM = ThreadLocal
+            .withInitial(() -> new SingleThreadedRandomSource(42L));
 
     @SubscribeEvent
     static void renderFacade(AddSectionGeometryEvent event) {
@@ -36,7 +36,8 @@ public class ConduitFacadeRendering {
             }
         }
 
-        if (facades.isEmpty()) return;
+        if (facades.isEmpty())
+            return;
 
         event.addRenderer(new FacadeRenderer(facades, FacadeHelper.areFacadesVisible()));
     }
@@ -59,9 +60,7 @@ public class ConduitFacadeRendering {
             for (Map.Entry<BlockPos, BlockState> entry : facades.entrySet()) {
                 context.getPoseStack().pushPose();
                 context.getPoseStack()
-                    .translate(entry.getKey().getX() & 15,
-                        entry.getKey().getY() & 15,
-                        entry.getKey().getZ() & 15);
+                        .translate(entry.getKey().getX() & 15, entry.getKey().getY() & 15, entry.getKey().getZ() & 15);
 
                 var state = entry.getValue();
                 var pos = entry.getKey();
@@ -69,17 +68,17 @@ public class ConduitFacadeRendering {
                 random.setSeed(42L);
 
                 var model = Minecraft.getInstance()
-                    .getModelManager()
-                    .getBlockModelShaper()
-                    .getBlockModel(entry.getValue());
+                        .getModelManager()
+                        .getBlockModelShaper()
+                        .getBlockModel(entry.getValue());
 
                 for (var renderType : model.getRenderTypes(entry.getValue(), random, ModelData.EMPTY)) {
                     VertexConsumer consumer = wrapper == null ? context.getOrCreateChunkBuffer(renderType) : wrapper;
-                    Minecraft.getInstance().getBlockRenderer().getModelRenderer().tesselateBlock(context.getRegion(),
-                        model, state, pos, context.getPoseStack(),
-                        consumer, true, random,
-                        42L, OverlayTexture.NO_OVERLAY,
-                        ModelData.EMPTY, renderType);
+                    Minecraft.getInstance()
+                            .getBlockRenderer()
+                            .getModelRenderer()
+                            .tesselateBlock(context.getRegion(), model, state, pos, context.getPoseStack(), consumer,
+                                    true, random, 42L, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
                 }
 
                 context.getPoseStack().popPose();

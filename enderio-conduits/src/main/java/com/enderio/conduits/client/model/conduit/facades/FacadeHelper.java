@@ -2,11 +2,10 @@ package com.enderio.conduits.client.model.conduit.facades;
 
 import com.enderio.conduits.common.conduit.block.ConduitBundleBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.SectionPos;
-
 import java.util.HashSet;
 import java.util.Set;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.SectionPos;
 
 // TODO: In future, support hiding specific conduit types too.
 public class FacadeHelper {
