@@ -1,6 +1,6 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.common.init.EIODataComponents;
 import com.enderio.base.common.init.EIOItems;
@@ -10,9 +10,6 @@ import com.enderio.machines.common.blocks.soul_engine.SoulEngineBlockEntity;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.enderio.machines.common.lang.MachineLang;
 import com.enderio.machines.common.souldata.EngineSoul;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
@@ -38,10 +35,14 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class SoulEngineCategory implements IRecipeCategory<EngineSoul.SoulData> {
 
-    public static final RecipeType<EngineSoul.SoulData> TYPE = RecipeType.create(EnderIOBase.REGISTRY_NAMESPACE,
-            "soul_engine", EngineSoul.SoulData.class);
+    public static final RecipeType<EngineSoul.SoulData> TYPE = RecipeType.create(EnderIO.NAMESPACE, "soul_engine",
+            EngineSoul.SoulData.class);
     private final IDrawableStatic background;
     private final IDrawable icon;
 

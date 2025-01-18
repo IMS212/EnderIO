@@ -22,6 +22,27 @@ public class ChemicalTicker extends CapabilityAwareConduitTicker<ChemicalConduit
     }
 
     @Override
+    public void tickGraph(ServerLevel level, ChemicalConduit conduit, List<ConduitNode> loadedNodes, ConduitNetwork graph,
+        ColoredRedstoneProvider coloredRedstoneProvider) {
+        boolean shouldReset = false;
+        for (var loadedNode : loadedNodes) {
+            ChemicalConduitData fluidExtendedData = loadedNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
+            if (fluidExtendedData.shouldReset()) {
+                shouldReset = true;
+                fluidExtendedData.setShouldReset(false);
+            }
+        }
+
+        if (shouldReset) {
+            for (var loadedNode : loadedNodes) {
+                ChemicalConduitData fluidExtendedData = loadedNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
+                fluidExtendedData.setLockedChemical(ChemicalStack.EMPTY);
+            }
+        }
+        super.tickGraph(level, conduit, loadedNodes, graph, coloredRedstoneProvider);
+    }
+
+    @Override
     protected void tickCapabilityGraph(ServerLevel level,
         ChemicalConduit conduit,
         List<CapabilityConnection> inserts,
@@ -45,12 +66,12 @@ public class ChemicalTicker extends CapabilityAwareConduitTicker<ChemicalConduit
         Chemical extractType = extractHandler.extractChemical(Long.MAX_VALUE, Action.SIMULATE).getChemical();
         ChemicalStack result;
 
-        if (!data.lockedChemical.isEmpty()) {
-            if (data.lockedChemical.getChemical() != extractType) {
+        if (!data.lockedChemical().isEmpty()) {
+            if (data.lockedChemical().getChemical() != extractType) {
                 return;
             }
 
-            result = extractHandler.extractChemical(data.lockedChemical.getChemical().getStack(transferRate), Action.SIMULATE);
+            result = extractHandler.extractChemical(data.lockedChemical().getChemical().getStack(transferRate), Action.SIMULATE);
         } else {
             result = extractHandler.extractChemical(transferRate, Action.SIMULATE);
         }
@@ -74,13 +95,16 @@ public class ChemicalTicker extends CapabilityAwareConduitTicker<ChemicalConduit
             }
             IChemicalHandler destinationHandler = insert.capability();
             ChemicalStack transferredChemical;
-            if (!data.lockedChemical.isEmpty()) {
-                transferredChemical = tryChemicalTransfer(destinationHandler, extractHandler, data.lockedChemical.getChemical().getStack(transferRate - transferred), true);
+            if (!data.lockedChemical().isEmpty()) {
+                transferredChemical = tryChemicalTransfer(destinationHandler, extractHandler, data.lockedChemical().getChemical().getStack(transferRate - transferred), true);
             } else {
                 transferredChemical = tryChemicalTransfer(destinationHandler, extractHandler, transferRate - transferred, true);
             }
 
             transferred += transferredChemical.getAmount();
+            if (!conduit.isMultiChemical() && data.lockedChemical().isEmpty()) {
+                data.setLockedChemical(extractType.getStack(1));
+            }
             if (transferred >= transferRate) {
                 break;
             }

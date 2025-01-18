@@ -4,9 +4,6 @@ import com.enderio.machines.common.blocks.crafter.CrafterMenu;
 import com.enderio.machines.common.init.MachineMenus;
 import com.enderio.machines.common.network.UpdateCrafterTemplatePacket;
 import com.mojang.logging.LogUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.RecipeType;
@@ -24,6 +21,10 @@ import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class CrafterRecipeTransferHandler implements IRecipeTransferHandler<CrafterMenu, RecipeHolder<CraftingRecipe>> {
 

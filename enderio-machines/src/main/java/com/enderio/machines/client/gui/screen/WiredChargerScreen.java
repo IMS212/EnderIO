@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.gui.widget.RedstoneControlPickerWidget;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.machines.client.gui.screen.base.MachineScreen;
@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class WiredChargerScreen extends MachineScreen<WiredChargerMenu> {
 
-    private static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/screen/wired_charger.png");
+    private static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/screen/wired_charger.png");
     private static final int WIDTH = 197;
     private static final int HEIGHT = 166;
 

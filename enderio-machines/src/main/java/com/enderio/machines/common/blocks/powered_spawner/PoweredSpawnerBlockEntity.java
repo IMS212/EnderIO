@@ -1,6 +1,6 @@
 package com.enderio.machines.common.blocks.powered_spawner;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.UseOnly;
 import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.api.capacitor.CapacitorModifier;
@@ -49,7 +49,7 @@ public class PoweredSpawnerBlockEntity extends PoweredMachineBlockEntity impleme
             MachinesConfig.COMMON.ENERGY.POWERED_SPAWNER_CAPACITY);
     public static final QuadraticScalable USAGE = new QuadraticScalable(CapacitorModifier.ENERGY_USE,
             MachinesConfig.COMMON.ENERGY.POWERED_SPAWNER_USAGE);
-    public static final ResourceLocation NO_MOB = EnderIOBase.loc("no_mob");
+    public static final ResourceLocation NO_MOB = EnderIO.loc("no_mob");
 
     // TODO: Config value?
     public static final int ACTION_RANGE = 4;

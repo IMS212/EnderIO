@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.gui.widget.RedstoneControlPickerWidget;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.machines.client.gui.screen.base.MachineScreen;
@@ -14,11 +14,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class SlicerScreen extends MachineScreen<SlicerMenu> {
-    public static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/screen/slice_and_splice.png");
+    public static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/screen/slice_and_splice.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 208;
 
-    private static final ResourceLocation PROGRESS_SPRITE = EnderIOBase.loc("screen/slice_and_splice/progress");
+    private static final ResourceLocation PROGRESS_SPRITE = EnderIO.loc("screen/slice_and_splice/progress");
 
     public SlicerScreen(SlicerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

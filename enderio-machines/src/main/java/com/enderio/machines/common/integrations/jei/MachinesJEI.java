@@ -1,6 +1,6 @@
 package com.enderio.machines.common.integrations.jei;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.integrations.jei.subtype.EntityStorageSubtypeInterpreter;
 import com.enderio.machines.client.gui.screen.AlloySmelterScreen;
 import com.enderio.machines.client.gui.screen.EnchanterScreen;
@@ -10,7 +10,8 @@ import com.enderio.machines.client.gui.screen.SagMillScreen;
 import com.enderio.machines.client.gui.screen.SlicerScreen;
 import com.enderio.machines.client.gui.screen.SoulBinderScreen;
 import com.enderio.machines.client.gui.screen.VatScreen;
-import com.enderio.machines.client.gui.screen.base.LegacyMachineScreen;
+import com.enderio.machines.client.gui.screen.base.MachineScreen;
+import com.enderio.machines.common.blocks.alloy.AlloySmelterMenu;
 import com.enderio.machines.common.blocks.alloy.PrimitiveAlloySmelterMenu;
 import com.enderio.machines.common.blocks.enchanter.EnchanterMenu;
 import com.enderio.machines.common.blocks.sag_mill.SagMillMenu;
@@ -45,7 +46,7 @@ import net.minecraft.world.item.ItemStack;
 public class MachinesJEI implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return EnderIOBase.loc("machines");
+        return EnderIO.loc("machines");
     }
 
     @Override
@@ -95,9 +96,9 @@ public class MachinesJEI implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-//        registration.addRecipeTransferHandler(AlloySmelterMenu.class, MachineMenus.ALLOY_SMELTER.get(),
-//                AlloySmeltingCategory.TYPE, AlloySmelterMenu.INPUTS_INDEX, AlloySmelterMenu.INPUT_COUNT,
-//                AlloySmelterMenu.LAST_INDEX + 1, 36);
+        registration.addRecipeTransferHandler(AlloySmelterMenu.class, MachineMenus.ALLOY_SMELTER.get(),
+                AlloySmeltingCategory.TYPE, AlloySmelterMenu.INPUTS_INDEX, AlloySmelterMenu.INPUT_COUNT,
+                AlloySmelterMenu.LAST_INDEX + 1, 36);
 
         registration.addRecipeTransferHandler(EnchanterMenu.class, MachineMenus.ENCHANTER.get(), EnchanterCategory.TYPE,
                 EnchanterMenu.INPUTS_INDEX, EnchanterMenu.INPUT_COUNT, EnchanterMenu.LAST_INDEX + 1, 36);
@@ -161,6 +162,6 @@ public class MachinesJEI implements IModPlugin {
         registration.addRecipeClickArea(SoulBinderScreen.class, 80, 34, 24, 17, SoulBindingCategory.TYPE);
         registration.addRecipeClickArea(VatScreen.class, 75, 33, 28, 30, VATCategory.TYPE);
 
-        registration.addGhostIngredientHandler(LegacyMachineScreen.class, new MachinesGhostSlotHandler());
+        registration.addGhostIngredientHandler(MachineScreen.class, new MachinesGhostSlotHandler());
     }
 }

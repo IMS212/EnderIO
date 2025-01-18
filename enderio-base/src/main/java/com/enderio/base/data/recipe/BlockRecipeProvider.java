@@ -1,6 +1,6 @@
 package com.enderio.base.data.recipe;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.block.ResettingLeverBlock;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
@@ -218,7 +218,7 @@ public class BlockRecipeProvider extends RecipeProvider {
             .requires(inverted.get())
             .requires(Blocks.REDSTONE_TORCH)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.LEVER))
-            .save(recipeOutput, EnderIOBase.loc(baseName + "_from_inv"));
+            .save(recipeOutput, EnderIO.loc(baseName + "_from_inv"));
 
         // Previous upgrade recipe
         if (previous != null) {
@@ -227,7 +227,7 @@ public class BlockRecipeProvider extends RecipeProvider {
                 .requires(previous.get())
                 .requires(Tags.Items.DUSTS_REDSTONE)
                 .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.LEVER))
-                .save(recipeOutput, EnderIOBase.loc(baseName + "_from_prev"));
+                .save(recipeOutput, EnderIO.loc(baseName + "_from_prev"));
         }
 
         // Main inverted recipe.
@@ -245,7 +245,7 @@ public class BlockRecipeProvider extends RecipeProvider {
             .requires(base.get())
             .requires(Blocks.REDSTONE_TORCH)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.LEVER))
-            .save(recipeOutput, EnderIOBase.loc(invertedName + "_from_base"));
+            .save(recipeOutput, EnderIO.loc(invertedName + "_from_base"));
 
         // Previous upgrade recipe
         if (previousInverted != null) {
@@ -254,7 +254,7 @@ public class BlockRecipeProvider extends RecipeProvider {
                 .requires(previousInverted.get())
                 .requires(Ingredient.of(Tags.Items.DUSTS_REDSTONE))
                 .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.LEVER))
-                .save(recipeOutput, EnderIOBase.loc(invertedName + "_from_prev"));
+                .save(recipeOutput, EnderIO.loc(invertedName + "_from_prev"));
         }
     }
 }

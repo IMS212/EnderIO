@@ -1,6 +1,6 @@
 package com.enderio.machines.client;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.travel.RegisterTravelRenderersEvent;
 import com.enderio.machines.EnderIOMachines;
 import com.enderio.machines.client.rendering.item.FluidTankBEWLR;
@@ -39,12 +39,12 @@ public class EnderIOMachinesClient {
 
     @SubscribeEvent
     public static void customModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register(EnderIOBase.loc("io_overlay"), new IOOverlayBakedModel.Loader());
+        event.register(EnderIO.loc("io_overlay"), new IOOverlayBakedModel.Loader());
     }
 
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.CROSSHAIR, EnderIOBase.loc("anchor_hud"), TravelAnchorHud.INSTANCE);
+        event.registerAbove(VanillaGuiLayers.CROSSHAIR, EnderIO.loc("anchor_hud"), TravelAnchorHud.INSTANCE);
     }
 
     @SubscribeEvent

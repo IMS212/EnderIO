@@ -3,8 +3,8 @@
     "package" : "com.enderio.machines.mixin",
     "compatibilityLevel" : "JAVA_17",
     "mixins" : [
-        "RecipeManagerMixin",
-        "AbstractCookingRecipeAccessor"
+        "AbstractCookingRecipeAccessor",
+        "RecipeManagerMixin"
     ],
     "minVersion" : "0.8"
 }

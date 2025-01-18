@@ -25,27 +25,14 @@ public class PaintUtils {
         return BuiltInRegistries.BLOCK.get(ResourceLocation.parse(rl));
     }
 
-    /**
-     * @deprecated Use stack.get(EIODataComponents.BLOCK_PAINT) directly.
-     */
-    @Deprecated(forRemoval = true, since = "6.1")
-    @Nullable
-    public static Block getPaint(ItemStack stack) {
-        var paintData = stack.get(EIODataComponents.BLOCK_PAINT);
-        if (paintData != null) {
-            return paintData.paint();
-        }
-
-        return null;
-    }
-
     public static Optional<SoundEvent> getPlaceSound(BlockState state, Level level, BlockPos pos, Player player, Class<? extends BlockItem> blockItemClass) {
         if (level.isClientSide()) {
             return Optional.of(List.of(InteractionHand.values()).stream()
                 .map(player::getItemInHand)
                 .filter(itemStack -> blockItemClass.isInstance(itemStack.getItem()))
-                .map(PaintUtils::getPaint)
+                .map(stack -> stack.get(EIODataComponents.BLOCK_PAINT))
                 .filter(Objects::nonNull)
+                .map(BlockPaintData::paint)
                 .map(block -> block.getSoundType(block.defaultBlockState(), level, pos, player))
                 .map(SoundType::getPlaceSound)
                 .findFirst()

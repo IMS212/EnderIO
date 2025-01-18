@@ -1,6 +1,6 @@
 package com.enderio.machines;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.integration.IntegrationManager;
 import com.enderio.base.data.EIODataProvider;
 import com.enderio.machines.common.blocks.base.menu.GhostMachineSlot;
@@ -34,8 +34,6 @@ import com.enderio.machines.data.recipes.TankRecipeProvider;
 import com.enderio.machines.data.souldata.SoulDataProvider;
 import com.enderio.machines.data.tag.MachineEntityTypeTagsProvider;
 import com.enderio.regilite.Regilite;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -52,13 +50,15 @@ import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 @EventBusSubscriber(modid = EnderIOMachines.MODULE_MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 @Mod(EnderIOMachines.MODULE_MOD_ID)
 public class EnderIOMachines {
     public static final String MODULE_MOD_ID = "enderio_machines";
-    public static final String REGISTRY_NAMESPACE = EnderIOBase.REGISTRY_NAMESPACE;
 
-    public static Regilite REGILITE = new Regilite(EnderIOBase.REGISTRY_NAMESPACE);
+    public static Regilite REGILITE = new Regilite(EnderIO.NAMESPACE);
 
     public EnderIOMachines(IEventBus modEventBus, ModContainer modContainer) {
         // Register machine config

@@ -1,10 +1,6 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
-import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
-import static mezz.jei.api.recipe.RecipeIngredientRole.RENDER_ONLY;
-
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.integrations.jei.JEIUtils;
 import com.enderio.machines.client.gui.screen.PrimitiveAlloySmelterScreen;
 import com.enderio.machines.client.gui.screen.StirlingGeneratorScreen;
@@ -13,8 +9,6 @@ import com.enderio.machines.common.init.MachineBlocks;
 import com.enderio.machines.common.integrations.jei.util.MachineRecipeCategory;
 import com.enderio.machines.common.integrations.jei.util.RecipeUtil;
 import com.enderio.machines.common.lang.MachineLang;
-import java.util.Arrays;
-import java.util.List;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -31,11 +25,16 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static mezz.jei.api.recipe.RecipeIngredientRole.*;
+
 // TODO: Not a massive fan of how the primitive alloy smelter has been implemented and the resulting complexity...
 public class PrimitiveAlloySmeltingCategory extends MachineRecipeCategory<RecipeHolder<AlloySmeltingRecipe>> {
 
     public static final RecipeType<RecipeHolder<AlloySmeltingRecipe>> TYPE = JEIUtils
-            .createRecipeType(EnderIOBase.REGISTRY_NAMESPACE, "primitive_alloy_smelting", AlloySmeltingRecipe.class);
+            .createRecipeType(EnderIO.NAMESPACE, "primitive_alloy_smelting", AlloySmeltingRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;

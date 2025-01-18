@@ -9,6 +9,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 
+@Deprecated(forRemoval = true, since = "7.1")
 public record EnergySyncData(int energyStored, int maxEnergyStored, int maxEnergyUse) {
 
     public static Codec<EnergySyncData> CODEC = RecordCodecBuilder.create(instance -> instance

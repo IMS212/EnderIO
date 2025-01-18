@@ -1,10 +1,10 @@
 package com.enderio.modconduits;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.EnderIOConduitsRegistries;
+import com.enderio.modconduits.data.ModConduitRecipeProvider;
 import com.enderio.modconduits.mods.Integrations;
 import com.enderio.modconduits.mods.appeng.AE2ConduitsModule;
-import com.enderio.modconduits.data.ModConduitRecipeProvider;
 import com.enderio.modconduits.mods.mekanism.MekanismModule;
 import com.enderio.modconduits.mods.refinedstorage.RefinedStorageModule;
 import com.enderio.regilite.Regilite;
@@ -32,15 +32,12 @@ import static java.util.Map.entry;
 @Mod(ModdedConduits.MODULE_MOD_ID)
 public class ModdedConduits {
     public static final String MODULE_MOD_ID = "enderio_conduits_modded";
-    public static final String REGISTRY_NAMESPACE = EnderIOBase.REGISTRY_NAMESPACE;
 
-    public static final Regilite REGILITE = new Regilite(REGISTRY_NAMESPACE);
+    public static final Regilite REGILITE = new Regilite(EnderIO.NAMESPACE);
 
     private static final Map<String, Supplier<ConduitModule>> CONDUIT_MODULES = Map.ofEntries(
-        entry("ae2", () -> AE2ConduitsModule.INSTANCE),
-        entry("mekanism", () -> MekanismModule.INSTANCE),
-        entry("refinedstorage", () -> RefinedStorageModule.INSTANCE)
-    );
+            entry("ae2", () -> AE2ConduitsModule.INSTANCE), entry("mekanism", () -> MekanismModule.INSTANCE),
+            entry("refinedstorage", () -> RefinedStorageModule.INSTANCE));
 
     public static IEventBus modEventBus;
 
@@ -56,18 +53,20 @@ public class ModdedConduits {
     public static void onData(GatherDataEvent event) {
         var pack = event.getGenerator().getVanillaPack(true);
 
-        var datapackEntriesProvider = pack.addProvider(output -> new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(),
-            createDatapackEntriesBuilder(), ModdedConduits::buildConduitConditions, Set.of(REGISTRY_NAMESPACE)));
+        var datapackEntriesProvider = pack.addProvider(output -> new DatapackBuiltinEntriesProvider(output,
+                event.getLookupProvider(), createDatapackEntriesBuilder(), ModdedConduits::buildConduitConditions,
+                Set.of(EnderIO.NAMESPACE)));
 
         PackOutput packOutput = event.getGenerator().getPackOutput();
         var registryProvider = datapackEntriesProvider.getRegistryProvider();
 
-        event.getGenerator().addProvider(event.includeServer(), new ModConduitRecipeProvider(packOutput, registryProvider));
+        event.getGenerator()
+                .addProvider(event.includeServer(), new ModConduitRecipeProvider(packOutput, registryProvider));
     }
 
     private static RegistrySetBuilder createDatapackEntriesBuilder() {
-        return new RegistrySetBuilder()
-            .add(EnderIOConduitsRegistries.Keys.CONDUIT, (context) -> executeOnLoadedModules(module -> module.bootstrapConduits(context)));
+        return new RegistrySetBuilder().add(EnderIOConduitsRegistries.Keys.CONDUIT,
+                (context) -> executeOnLoadedModules(module -> module.bootstrapConduits(context)));
     }
 
     private static void buildConduitConditions(BiConsumer<ResourceKey<?>, ICondition> conditions) {

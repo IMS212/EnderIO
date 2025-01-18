@@ -71,15 +71,7 @@ import net.neoforged.neoforge.registries.NewRegistryEvent;
 public class EnderIOBase {
     public static final String MODULE_MOD_ID = "enderio_base";
 
-    @Deprecated(since = "7.1")
-    public static final String REGISTRY_NAMESPACE = EnderIO.NAMESPACE;
-
     public static Regilite REGILITE = new Regilite(EnderIO.NAMESPACE);
-
-    @Deprecated(since = "7.1")
-    public static ResourceLocation loc(String path) {
-        return EnderIO.loc(path);
-    }
 
     public static IEventBus modEventBus;
     public static ModContainer modContainer;

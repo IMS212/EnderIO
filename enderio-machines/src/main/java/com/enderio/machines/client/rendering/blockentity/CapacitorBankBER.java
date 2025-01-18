@@ -1,6 +1,6 @@
 package com.enderio.machines.client.rendering.blockentity;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.core.client.RenderUtil;
 import com.enderio.machines.common.blockentity.capacitorbank.CapacitorBankBlockEntity;
 import com.enderio.machines.common.blockentity.capacitorbank.DisplayMode;
@@ -29,12 +29,12 @@ import org.joml.Vector2i;
 
 public class CapacitorBankBER implements BlockEntityRenderer<CapacitorBankBlockEntity> {
 
-    private static final ResourceLocation FULL_BAR = EnderIOBase.loc("block/capacitor_additionals/capacitor_bank_bar_full");
-    private static final ResourceLocation END_BAR = EnderIOBase.loc("block/capacitor_additionals/capacitor_bank_bar_end");
-    private static final ResourceLocation ENERGY_BAR = EnderIOBase.loc("block/capacitor_additionals/capacitor_bank_bar_energy");
+    private static final ResourceLocation FULL_BAR = EnderIO.loc("block/capacitor_additionals/capacitor_bank_bar_full");
+    private static final ResourceLocation END_BAR = EnderIO.loc("block/capacitor_additionals/capacitor_bank_bar_end");
+    private static final ResourceLocation ENERGY_BAR = EnderIO.loc("block/capacitor_additionals/capacitor_bank_bar_energy");
 
-    private static final ResourceLocation IO_1X1 = EnderIOBase.loc("block/capacitor_additionals/1x1_full");
-    private static final ResourceLocation IO_FULL = EnderIOBase.loc("block/capacitor_additionals/full");
+    private static final ResourceLocation IO_1X1 = EnderIO.loc("block/capacitor_additionals/1x1_full");
+    private static final ResourceLocation IO_FULL = EnderIO.loc("block/capacitor_additionals/full");
 
     private static final Direction[] HORIZONTAL_DIRECTIONS = new Direction[] {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
     public CapacitorBankBER(BlockEntityRendererProvider.Context context) {
@@ -323,58 +323,58 @@ public class CapacitorBankBER implements BlockEntityRenderer<CapacitorBankBlockE
 
             if (isSmallY) {
                 if (isLeft) {
-                    return EnderIOBase.loc("block/capacitor_additionals/small_r");
+                    return EnderIO.loc("block/capacitor_additionals/small_r");
                 }
 
                 if (isRight) {
-                    return EnderIOBase.loc("block/capacitor_additionals/small_l");
+                    return EnderIO.loc("block/capacitor_additionals/small_l");
                 }
 
-                return EnderIOBase.loc("block/capacitor_additionals/small_lr");
+                return EnderIO.loc("block/capacitor_additionals/small_lr");
             }
 
             if (isSmallX) {
                 if (isUp) {
-                    return EnderIOBase.loc("block/capacitor_additionals/small_u");
+                    return EnderIO.loc("block/capacitor_additionals/small_u");
                 }
 
                 if (isDown) {
-                    return EnderIOBase.loc("block/capacitor_additionals/small_d");
+                    return EnderIO.loc("block/capacitor_additionals/small_d");
                 }
 
-                return EnderIOBase.loc("block/capacitor_additionals/small_ud");
+                return EnderIO.loc("block/capacitor_additionals/small_ud");
             }
 
             if (isUp) {
                 if (isLeft) {
-                    return EnderIOBase.loc("block/capacitor_additionals/corner_tr");
+                    return EnderIO.loc("block/capacitor_additionals/corner_tr");
                 }
 
                 if (isRight) {
-                    return EnderIOBase.loc("block/capacitor_additionals/corner_tl");
+                    return EnderIO.loc("block/capacitor_additionals/corner_tl");
                 }
                 
-                return EnderIOBase.loc("block/capacitor_additionals/side_t");
+                return EnderIO.loc("block/capacitor_additionals/side_t");
             }
 
             if (isDown) {
                 if (isLeft) {
-                    return EnderIOBase.loc("block/capacitor_additionals/corner_br");
+                    return EnderIO.loc("block/capacitor_additionals/corner_br");
                 }
 
                 if (isRight) {
-                    return EnderIOBase.loc("block/capacitor_additionals/corner_bl");
+                    return EnderIO.loc("block/capacitor_additionals/corner_bl");
                 }
 
-                return EnderIOBase.loc("block/capacitor_additionals/side_b");
+                return EnderIO.loc("block/capacitor_additionals/side_b");
             }
 
             if (isLeft) {
-                return EnderIOBase.loc("block/capacitor_additionals/side_r");
+                return EnderIO.loc("block/capacitor_additionals/side_r");
             }
 
             if (isRight) {
-                return EnderIOBase.loc("block/capacitor_additionals/side_l");
+                return EnderIO.loc("block/capacitor_additionals/side_l");
             }
 
             return IO_FULL;

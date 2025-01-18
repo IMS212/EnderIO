@@ -101,53 +101,49 @@ public class SolarPanelBlockEntity extends LegacyPoweredMachineBlockEntity {
         return getGenerationRate() > 0;
     }
 
+    /**
+     * Calculates the generation rate for this solar panel.
+     * Only generates energy during day before 12_000 ticks (10 minute aka half a minecraft day), or
+     * if its day and either night or if it hasLiquidSunshine.
+     * @see SolarPanelBlockEntity#hasLiquidSunshine()
+     *
+     * @return this solar panels generation rate.
+     */
     public int getGenerationRate() {
-        int minuteInTicks = 20 * 60;
         if (level == null) {
             return 0;
         }
-        boolean day = true;
-        boolean night = false;
+
+        boolean day;
+        boolean night;
         if (soulData != null) {
             day = soulData.daytime();
             night = soulData.nighttime();
+        } else {
+            day = level.isDay();
+            night = level.isNight();
         }
 
-        int dayTime = (int) (level.getDayTime() % (minuteInTicks * 20));
         float progress = 0;
-        if ((day && night) || (day && hasLiquidSunshine())) {
+        if (day && (night || hasLiquidSunshine())) {
             progress = 1;
         } else if (day) {
-            if (dayTime > minuteInTicks * 9) {
+            int dayTime = (int) (level.getDayTime() % GameTicks.DAY_IN_TICKS);
+            if (dayTime > GameTicks.minutesToTicks(12)) {
                 return 0;
             }
-
-            if (dayTime < minuteInTicks) {
-                return 0;
-            }
-
-            progress = dayTime > minuteInTicks * 5 ? 10 * minuteInTicks - dayTime : dayTime;
-            progress = (progress - minuteInTicks) / (4 * minuteInTicks);
+            progress = dayTime > GameTicks.minutesToTicks(5) ? GameTicks.minutesToTicks(10) - dayTime : dayTime;
+            progress = (progress - GameTicks.MINUTE_IN_TICKS) / GameTicks.minutesToTicks(4);
         } else if (night) {
-            if (dayTime < minuteInTicks * 11) {
-                return 0;
-            }
-
-            if (dayTime > minuteInTicks * 18) {
-                return 0;
-            }
-            progress = dayTime > minuteInTicks * 15 ? 20 * minuteInTicks - dayTime : minuteInTicks * 15 - dayTime;
-            progress = (progress - minuteInTicks) / (4 * minuteInTicks);
+            return 0;
         }
 
         double easing = easing(progress);
 
-        if (level.isRaining() && !level.isThundering()) {
-            easing -= 0.3f;
-        }
-
         if (level.isThundering()) {
             easing -= 0.7f;
+        } else if (level.isRaining()) {
+            easing -= 0.3f;
         }
 
         if (easing < 0) {
@@ -273,5 +269,23 @@ public class SolarPanelBlockEntity extends LegacyPoweredMachineBlockEntity {
     @SubscribeEvent
     static void onReload(RecipesUpdatedEvent event) {
         reload = !reload;
+    }
+
+    private static final class GameTicks {
+        static final int TICKS_PER_SECOND = 20;
+        static final int MINUTE_IN_TICKS = TICKS_PER_SECOND * 60;
+        static final int DAY_DURATION_MIN = 20;
+        static final int DAY_IN_TICKS = DAY_DURATION_MIN * MINUTE_IN_TICKS;
+
+        /**
+         * Converts minutes to game ticks.
+         * @see GameTicks#TICKS_PER_SECOND
+         *
+         * @param minutes to convert.
+         * @return corresponding minutes in game ticks.
+         */
+        static int minutesToTicks(int minutes) {
+            return minutes * 60 * TICKS_PER_SECOND;
+        }
     }
 }

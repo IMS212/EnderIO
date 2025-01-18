@@ -1,19 +1,19 @@
 package com.enderio.machines.data.tag;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.machines.common.tag.MachineTags;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.Tags;
 
-import java.util.concurrent.CompletableFuture;
-
 public class MachineEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
-    public MachineEntityTypeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, net.neoforged.neoforge.common.data.ExistingFileHelper existingFileHelper) {
-        super(packOutput, provider, EnderIOBase.REGISTRY_NAMESPACE, existingFileHelper);
+    public MachineEntityTypeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider,
+            net.neoforged.neoforge.common.data.ExistingFileHelper existingFileHelper) {
+        super(packOutput, provider, EnderIO.NAMESPACE, existingFileHelper);
     }
 
     @Override

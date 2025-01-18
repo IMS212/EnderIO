@@ -1,6 +1,6 @@
 package com.enderio.machines.client.rendering.model;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.io.IOConfigurable;
 import com.enderio.base.api.io.IOMode;
 import com.enderio.machines.common.blockentity.base.LegacyMachineBlockEntity;
@@ -36,10 +36,10 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 public class IOOverlayBakedModel implements IDynamicBakedModel {
-    public static final ResourceLocation TEX_DISABLED = EnderIOBase.loc("block/overlay/disabled");
-    public static final ResourceLocation TEX_PULL = EnderIOBase.loc("block/overlay/pull");
-    public static final ResourceLocation TEX_PUSH = EnderIOBase.loc("block/overlay/push");
-    public static final ResourceLocation TEX_PUSH_PULL = EnderIOBase.loc("block/overlay/push_pull");
+    public static final ResourceLocation TEX_DISABLED = EnderIO.loc("block/overlay/disabled");
+    public static final ResourceLocation TEX_PULL = EnderIO.loc("block/overlay/pull");
+    public static final ResourceLocation TEX_PUSH = EnderIO.loc("block/overlay/push");
+    public static final ResourceLocation TEX_PUSH_PULL = EnderIO.loc("block/overlay/push_pull");
 
     private static final EnumMap<Direction, Vector3f[]> QUADS = new EnumMap<>(Direction.class);
 

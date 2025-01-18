@@ -1,6 +1,6 @@
 package com.enderio.machines.common.init;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.client.paint.PaintedBlockColor;
 import com.enderio.base.common.init.EIOCreativeTabs;
@@ -80,11 +80,11 @@ public class MachineBlocks {
                     .customLoader(CompositeModelBuilder::begin)
                     .child("tank",
                             ModelHelper.getExistingAsBuilder(prov.models(),
-                                    EnderIOBase.loc(String.format("block/%s_body", ctx.getName()))))
+                                EnderIO.loc(String.format("block/%s_body", ctx.getName()))))
                     .child("overlay",
-                            ModelHelper.getExistingAsBuilder(prov.models(), EnderIOBase.loc("block/io_overlay")))
+                            ModelHelper.getExistingAsBuilder(prov.models(), EnderIO.loc("block/io_overlay")))
                     .end()
-                    .texture("particle", EnderIOBase.loc("block/machine_side"))))
+                    .texture("particle", EnderIO.loc("block/machine_side"))))
             .createBlockItem(ITEM_REGISTRY, block -> new FluidTankBlockItem(block, new Item.Properties(), 16000),
                     item -> item.setModelProvider((prov, ctx) -> {
                     })
@@ -105,11 +105,11 @@ public class MachineBlocks {
                     .customLoader(CompositeModelBuilder::begin)
                     .child("tank",
                             ModelHelper.getExistingAsBuilder(prov.models(),
-                                    EnderIOBase.loc(String.format("block/%s_body", ctx.getName()))))
+                                EnderIO.loc(String.format("block/%s_body", ctx.getName()))))
                     .child("overlay",
-                            ModelHelper.getExistingAsBuilder(prov.models(), EnderIOBase.loc("block/io_overlay")))
+                            ModelHelper.getExistingAsBuilder(prov.models(), EnderIO.loc("block/io_overlay")))
                     .end()
-                    .texture("particle", EnderIOBase.loc("block/machine_side"))))
+                    .texture("particle", EnderIO.loc("block/machine_side"))))
             .createBlockItem(ITEM_REGISTRY, (block) -> new FluidTankBlockItem(block, new Item.Properties(), 32000),
                     item -> item.setModelProvider((prov, ctx) -> {
                     })
@@ -179,7 +179,7 @@ public class MachineBlocks {
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setLootTable(MachinesLootTable::copyComponents)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab(EIOCreativeTabs.MACHINES));
 
     public static final RegiliteBlock<MachineBlock<XPVacuumBlockEntity>> XP_VACUUM = BLOCK_REGISTRY
@@ -188,7 +188,7 @@ public class MachineBlocks {
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setLootTable(MachinesLootTable::copyComponents)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .setTranslation("XP Vacuum")
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab(EIOCreativeTabs.MACHINES));
 
@@ -199,7 +199,7 @@ public class MachineBlocks {
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setLootTable(MachinesLootTable::copyComponents)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab(EIOCreativeTabs.MACHINES));
 
     public static final RegiliteBlock<PaintedTravelAnchorBlock> PAINTED_TRAVEL_ANCHOR = BLOCK_REGISTRY
@@ -257,7 +257,7 @@ public class MachineBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.OBSERVER))
             .addBlockTags(BlockTags.MINEABLE_WITH_PICKAXE)
             .setBlockStateProvider(
-                    (prov, ctx) -> prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName())))
+                    (prov, ctx) -> prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName())))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab((EIOCreativeTabs.MACHINES)));
 
     public static final RegiliteBlock<MachineBlock<XPObeliskBlockEntity>> XP_OBELISK = BLOCK_REGISTRY
@@ -269,7 +269,7 @@ public class MachineBlocks {
             .setLootTable(MachinesLootTable::copyComponents)
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .setTranslation("XP Obelisk")
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab((EIOCreativeTabs.MACHINES)));
 
@@ -283,7 +283,7 @@ public class MachineBlocks {
             .setLootTable(MachinesLootTable::copyComponents)
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab((EIOCreativeTabs.MACHINES)));
 
     public static final RegiliteBlock<MachineBlock<AversionObeliskBlockEntity>> AVERSION_OBELISK = BLOCK_REGISTRY
@@ -296,7 +296,7 @@ public class MachineBlocks {
             .setLootTable(MachinesLootTable::copyComponents)
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab((EIOCreativeTabs.MACHINES)));
 
     public static final RegiliteBlock<MachineBlock<RelocatorObeliskBlockEntity>> RELOCATOR_OBELISK = BLOCK_REGISTRY
@@ -309,7 +309,7 @@ public class MachineBlocks {
             .setLootTable(MachinesLootTable::copyComponents)
             .addBlockTags(BlockTags.NEEDS_IRON_TOOL, BlockTags.MINEABLE_WITH_PICKAXE)
             .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                    prov.models().getExistingFile(EnderIOBase.loc("block/" + ctx.getName()))))
+                    prov.models().getExistingFile(EnderIO.loc("block/" + ctx.getName()))))
             .createBlockItem(ITEM_REGISTRY, item -> item.setTab((EIOCreativeTabs.MACHINES)));
 
     // used when single methods needs to be overridden in the block class
@@ -356,7 +356,7 @@ public class MachineBlocks {
                 .registerBlock(name, props -> new CapacitorBankBlock(props, RegiliteBlockEntity.get(), tier),
                         BlockBehaviour.Properties.of().strength(2.5f, 8))
                 .setBlockStateProvider((prov, ctx) -> prov.simpleBlock(ctx.get(),
-                        prov.models().getExistingFile(EnderIOBase.loc(ctx.getName()))))
+                        prov.models().getExistingFile(EnderIO.loc(ctx.getName()))))
                 .setLootTable(MachinesLootTable::copyComponents)
                 .addBlockTags(BlockTags.MINEABLE_WITH_PICKAXE)
                 .createBlockItem(ITEM_REGISTRY, block -> new CapacitorBankItem(block, new Item.Properties()),

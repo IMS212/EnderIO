@@ -158,7 +158,10 @@ public class ConduitBundleBlock extends Block implements EntityBlock, SimpleWate
                 return Shapes.block();
             }
 
-            return conduit.getShape().getTotalShape();
+            // Ensure if a bundle is bugged with 0 conduits that it can be broken.
+            if (!conduit.getBundle().getConduits().isEmpty()) {
+                return conduit.getShape().getTotalShape();
+            }
         }
 
         return Shapes.block();

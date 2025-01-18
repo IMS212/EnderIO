@@ -1,6 +1,6 @@
 package com.enderio.conduits.client.gui;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.ConduitDataAccessor;
 import com.enderio.conduits.api.Conduit;
 import com.enderio.conduits.api.ConduitData;
@@ -39,7 +39,7 @@ import java.util.function.Function;
 
 public class ConduitScreen extends EnderContainerScreen<ConduitMenu> {
 
-    public static final ResourceLocation TEXTURE = EnderIOBase.loc("textures/gui/conduit.png");
+    public static final ResourceLocation TEXTURE = EnderIO.loc("textures/gui/conduit.png");
     private static final int WIDTH = 206;
     private static final int HEIGHT = 195;
 

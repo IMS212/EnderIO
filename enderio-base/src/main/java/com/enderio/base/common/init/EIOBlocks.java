@@ -1,6 +1,7 @@
 package com.enderio.base.common.init;
 
 import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.paint.PaintedBlockColor;
 import com.enderio.base.common.block.ColdFireBlock;
 import com.enderio.base.common.block.DarkSteelLadderBlock;
@@ -281,16 +282,16 @@ public class EIOBlocks {
     // region Pressure Plates
 
     public static final RegiliteBlock<EIOPressurePlateBlock> DARK_STEEL_PRESSURE_PLATE = pressurePlateBlock("dark_steel_pressure_plate",
-        EnderIOBase.loc("block/dark_steel_pressure_plate"), EIOPressurePlateBlock.PLAYER, false);
+        EnderIO.loc("block/dark_steel_pressure_plate"), EIOPressurePlateBlock.PLAYER, false);
 
     public static final RegiliteBlock<EIOPressurePlateBlock> SILENT_DARK_STEEL_PRESSURE_PLATE = pressurePlateBlock("silent_dark_steel_pressure_plate",
-        EnderIOBase.loc("block/dark_steel_pressure_plate"), EIOPressurePlateBlock.PLAYER, true);
+        EnderIO.loc("block/dark_steel_pressure_plate"), EIOPressurePlateBlock.PLAYER, true);
 
     public static final RegiliteBlock<EIOPressurePlateBlock> SOULARIUM_PRESSURE_PLATE = pressurePlateBlock("soularium_pressure_plate",
-        EnderIOBase.loc("block/soularium_pressure_plate"), EIOPressurePlateBlock.HOSTILE_MOB, false);
+        EnderIO.loc("block/soularium_pressure_plate"), EIOPressurePlateBlock.HOSTILE_MOB, false);
 
     public static final RegiliteBlock<EIOPressurePlateBlock> SILENT_SOULARIUM_PRESSURE_PLATE = pressurePlateBlock("silent_soularium_pressure_plate",
-        EnderIOBase.loc("block/soularium_pressure_plate"), EIOPressurePlateBlock.HOSTILE_MOB, true);
+        EnderIO.loc("block/soularium_pressure_plate"), EIOPressurePlateBlock.HOSTILE_MOB, true);
 
     public static final RegiliteBlock<SilentPressurePlateBlock> SILENT_OAK_PRESSURE_PLATE = silentPressurePlateBlock(
         (PressurePlateBlock) Blocks.OAK_PRESSURE_PLATE);

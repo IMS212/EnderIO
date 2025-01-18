@@ -1,6 +1,6 @@
 package com.enderio.base.data.recipe;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.base.common.tag.EIOTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -131,16 +131,16 @@ public class ItemRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, EIOItems.BASIC_ITEM_FILTER)
             .requires(EIOItems.BASIC_ITEM_FILTER)
             .unlockedBy("has_ingredient", has(EIOItems.BASIC_ITEM_FILTER))
-            .save(recipeOutput, EnderIOBase.loc("erase_basic_item_filter"));
+            .save(recipeOutput, EnderIO.loc("erase_basic_item_filter"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, EIOItems.ADVANCED_ITEM_FILTER)
             .requires(EIOItems.ADVANCED_ITEM_FILTER)
             .unlockedBy("has_ingredient", has(EIOItems.ADVANCED_ITEM_FILTER))
-            .save(recipeOutput, EnderIOBase.loc("erase_advanced_item_filter"));
+            .save(recipeOutput, EnderIO.loc("erase_advanced_item_filter"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, EIOItems.BASIC_FLUID_FILTER)
             .requires(EIOItems.BASIC_FLUID_FILTER)
             .unlockedBy("has_ingredient", has(EIOItems.BASIC_FLUID_FILTER))
-            .save(recipeOutput, EnderIOBase.loc("erase_basic_fluid_filter"));
+            .save(recipeOutput, EnderIO.loc("erase_basic_fluid_filter"));
     }
 }

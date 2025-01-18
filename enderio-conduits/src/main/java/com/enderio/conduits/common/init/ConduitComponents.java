@@ -1,6 +1,6 @@
 package com.enderio.conduits.common.init;
 
-import com.enderio.conduits.EnderIOConduits;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.Conduit;
 import com.enderio.conduits.api.facade.FacadeType;
 import com.enderio.conduits.common.redstone.DoubleRedstoneChannel;
@@ -19,7 +19,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ConduitComponents {
     private static final DeferredRegister.DataComponents DATA_COMPONENT_TYPES = DeferredRegister
-            .createDataComponents(EnderIOConduits.REGISTRY_NAMESPACE);
+            .createDataComponents(EnderIO.NAMESPACE);
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Holder<Conduit<?>>>> CONDUIT = DATA_COMPONENT_TYPES
             .registerComponentType("conduit",

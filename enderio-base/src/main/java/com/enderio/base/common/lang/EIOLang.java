@@ -1,6 +1,7 @@
 package com.enderio.base.common.lang;
 
 import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.capacitor.CapacitorModifier;
 import com.enderio.base.common.block.glass.GlassLighting;
 import com.enderio.core.common.util.TooltipUtil;
@@ -13,80 +14,80 @@ import net.minecraft.world.item.DyeColor;
 
 public class EIOLang {
     public static final Component BLOCK_BLAST_RESISTANT = TooltipUtil
-            .style(addTranslation("tooltip", EnderIOBase.loc("block.blast_resistant"), "Blast resistant"));
+            .style(addTranslation("tooltip", EnderIO.loc("block.blast_resistant"), "Blast resistant"));
 
     // region GUI Interactions
 
-    public static final Component OK = addTranslation("gui", EnderIOBase.loc("ok"), "Ok");
-    public static final Component CANCEL = addTranslation("gui", EnderIOBase.loc("cancel"), "Cancel");
+    public static final Component OK = addTranslation("gui", EnderIO.loc("ok"), "Ok");
+    public static final Component CANCEL = addTranslation("gui", EnderIO.loc("cancel"), "Cancel");
 
     // endregion
 
     // region Fused Quartz
 
     public static final Component FUSED_QUARTZ_EMITS_LIGHT = TooltipUtil
-            .style(addTranslation("tooltip", EnderIOBase.loc("fused_quartz.emits_light"), "Emits light"));
+            .style(addTranslation("tooltip", EnderIO.loc("fused_quartz.emits_light"), "Emits light"));
     public static final Component FUSED_QUARTZ_BLOCKS_LIGHT = TooltipUtil
-            .style(addTranslation("tooltip", EnderIOBase.loc("fused_quartz.blocks_light"), "Blocks light"));
+            .style(addTranslation("tooltip", EnderIO.loc("fused_quartz.blocks_light"), "Blocks light"));
 
     // endregion
 
     // region Items
 
     public static final Component DARK_STEEL_LADDER_FASTER = TooltipUtil.style(
-            addTranslation("tooltip", EnderIOBase.loc("dark_steel_ladder.faster"), "Faster than regular ladders"));
+            addTranslation("tooltip", EnderIO.loc("dark_steel_ladder.faster"), "Faster than regular ladders"));
 
     public static final Component SOUL_VIAL_ERROR_PLAYER = addTranslation("message",
-            EnderIOBase.loc("soul_vial.error_player"), "You cannot put player in a bottle!");
+            EnderIO.loc("soul_vial.error_player"), "You cannot put player in a bottle!");
     public static final Component SOUL_VIAL_ERROR_BOSS = addTranslation("message",
-            EnderIOBase.loc("soul_vial.error_boss"), "Nice try. Bosses don't like bottles.");
+            EnderIO.loc("soul_vial.error_boss"), "Nice try. Bosses don't like bottles.");
     public static final Component SOUL_VIAL_ERROR_BLACKLISTED = addTranslation("message",
-            EnderIOBase.loc("soul_vial.error_blacklisted"), "This entity has been blacklisted.");
+            EnderIO.loc("soul_vial.error_blacklisted"), "This entity has been blacklisted.");
     public static final Component SOUL_VIAL_ERROR_FAILED = addTranslation("message",
-            EnderIOBase.loc("soul_vial.error_failed"), "This entity cannot be captured.");
+            EnderIO.loc("soul_vial.error_failed"), "This entity cannot be captured.");
     public static final Component SOUL_VIAL_ERROR_DEAD = addTranslation("message",
-            EnderIOBase.loc("soul_vial.error_dead"), "Cannot capture a dead mob!");
+            EnderIO.loc("soul_vial.error_dead"), "Cannot capture a dead mob!");
     public static final MutableComponent SOUL_VIAL_TOOLTIP_HEALTH = addTranslation("tooltip",
-            EnderIOBase.loc("soul_vial.health"), "Health: %s/%s");
+            EnderIO.loc("soul_vial.health"), "Health: %s/%s");
 
     public static final Component COORDINATE_SELECTOR_NO_PAPER = addTranslation("info",
-            EnderIOBase.loc("coordinate_selector.no_paper"), "No paper in inventory");
+            EnderIO.loc("coordinate_selector.no_paper"), "No paper in inventory");
     public static final Component COORDINATE_SELECTOR_NO_BLOCK = addTranslation("info",
-            EnderIOBase.loc("coordinate_selector.no_block"), "No block in range");
-    public static final Component TOO_MANY_LEVELS = addTranslation("info", EnderIOBase.loc("too_many_levels"),
+            EnderIO.loc("coordinate_selector.no_block"), "No block in range");
+    public static final Component TOO_MANY_LEVELS = addTranslation("info", EnderIO.loc("too_many_levels"),
             "You have more than 21862 levels, that's too much XP.");
 
-    public static final Component CONDUIT_CHANNEL = addTranslation("gui", EnderIOBase.loc("conduit_channel"),
+    public static final Component CONDUIT_CHANNEL = addTranslation("gui", EnderIO.loc("conduit_channel"),
             "Conduit-Channel");
-    public static final Component REDSTONE_CHANNEL = addTranslation("gui", EnderIOBase.loc("redstone_channel"),
+    public static final Component REDSTONE_CHANNEL = addTranslation("gui", EnderIO.loc("redstone_channel"),
             "Redstone-Channel");
-    public static final Component REDSTONE_MODE = addTranslation("gui", EnderIOBase.loc("redstone.mode"),
+    public static final Component REDSTONE_MODE = addTranslation("gui", EnderIO.loc("redstone.mode"),
             "Redstone Mode");
-    public static final Component ROUND_ROBIN_ENABLED = addTranslation("gui", EnderIOBase.loc("round_robin.enabled"),
+    public static final Component ROUND_ROBIN_ENABLED = addTranslation("gui", EnderIO.loc("round_robin.enabled"),
             "Round Robin Enabled");
-    public static final Component ROUND_ROBIN_DISABLED = addTranslation("gui", EnderIOBase.loc("round_robin.disabled"),
+    public static final Component ROUND_ROBIN_DISABLED = addTranslation("gui", EnderIO.loc("round_robin.disabled"),
             "Round Robin Disabled");
-    public static final Component SELF_FEED_ENABLED = addTranslation("gui", EnderIOBase.loc("self_feed.enabled"),
+    public static final Component SELF_FEED_ENABLED = addTranslation("gui", EnderIO.loc("self_feed.enabled"),
             "Self Feed Enabled");
-    public static final Component SELF_FEED_DISABLED = addTranslation("gui", EnderIOBase.loc("self_feed.disabled"),
+    public static final Component SELF_FEED_DISABLED = addTranslation("gui", EnderIO.loc("self_feed.disabled"),
             "Self Feed Disabled");
     public static final Component FLUID_CONDUIT_CHANGE_FLUID1 = addTranslation("gui",
-            EnderIOBase.loc("fluid_conduit.change_fluid1"), "Locked Fluid:");
+            EnderIO.loc("fluid_conduit.change_fluid1"), "Locked Fluid:");
     public static final Component FLUID_CONDUIT_CHANGE_FLUID2 = addTranslation("gui",
-            EnderIOBase.loc("fluid_conduit.change_fluid2"), "Click to reset!");
+            EnderIO.loc("fluid_conduit.change_fluid2"), "Click to reset!");
     public static final MutableComponent FLUID_CONDUIT_CHANGE_FLUID3 = addTranslation("gui",
-            EnderIOBase.loc("fluid_conduit.change_fluid3"), "Fluid: %s");
+            EnderIO.loc("fluid_conduit.change_fluid3"), "Fluid: %s");
 
     public static final MutableComponent TANK_EMPTY_STRING = addTranslation("tooltip",
-            EnderIOBase.loc("fluid_tank.tank_empty_tooltip"), "Empty tank");
+            EnderIO.loc("fluid_tank.tank_empty_tooltip"), "Empty tank");
     public static final MutableComponent FLUID_TANK_TOOLTIP = addTranslation("tooltip",
-            EnderIOBase.loc("fluid_tank.tank_tooltip"), "%d/%d mb of %s");// [amount]/[capacity] mb of [FluidName]
+            EnderIO.loc("fluid_tank.tank_tooltip"), "%d/%d mb of %s");// [amount]/[capacity] mb of [FluidName]
     // endregion
 
     // region Capacitors
 
     public static final MutableComponent CAPACITOR_TOOLTIP_BASE = addTranslation("tooltip",
-            EnderIOBase.loc("capacitor.base"), "Base Modifier: %s");
+            EnderIO.loc("capacitor.base"), "Base Modifier: %s");
 
     public static final MutableComponent CAPACITOR_TOOLTIP_ENERGY_CAPACITY = addTranslation("tooltip",
             CapacitorModifier.ENERGY_CAPACITY.modifierId, "Energy Capacity Modifier: %s");
@@ -102,55 +103,55 @@ public class EIOLang {
     // Declares order. In this case: Modifier Quality, Modifier Type, Base Quality.
     // Takes first modifier.
     public static final MutableComponent LOOT_CAPACITOR_NAME = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_template"), "%s %s %s");
+            EnderIO.loc("loot_capacitor_template"), "%s %s %s");
 
     public static final MutableComponent LOOT_CAPACITOR_BASE_DUD = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_dud"), "Capacitor Dud");
+            EnderIO.loc("loot_capacitor_dud"), "Capacitor Dud");
     public static final MutableComponent LOOT_CAPACITOR_BASE_NORMAL = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_normal"), "Capacitor");
+            EnderIO.loc("loot_capacitor_normal"), "Capacitor");
     public static final MutableComponent LOOT_CAPACITOR_BASE_ENHANCED = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_enhanced"), "Enhanced Capacitor");
+            EnderIO.loc("loot_capacitor_enhanced"), "Enhanced Capacitor");
     public static final MutableComponent LOOT_CAPACITOR_BASE_WONDER = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_wonder"), "Wonder Capacitor");
+            EnderIO.loc("loot_capacitor_wonder"), "Wonder Capacitor");
     public static final MutableComponent LOOT_CAPACITOR_BASE_IMPOSSIBLE = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_impossible"), "Impossible Capacitor");
+            EnderIO.loc("loot_capacitor_impossible"), "Impossible Capacitor");
 
     public static final MutableComponent LOOT_CAPACITOR_TYPE_ENERGY_CAPACITY = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_energy_capacity"), "Insatiable");
+            EnderIO.loc("loot_capacitor_energy_capacity"), "Insatiable");
     public static final MutableComponent LOOT_CAPACITOR_TYPE_ENERGY_USE = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_energy_use"), "Hungry");
+            EnderIO.loc("loot_capacitor_energy_use"), "Hungry");
     public static final MutableComponent LOOT_CAPACITOR_TYPE_FUEL_EFFICIENCY = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_fuel_efficiency"), "Efficient");
+            EnderIO.loc("loot_capacitor_fuel_efficiency"), "Efficient");
     public static final MutableComponent LOOT_CAPACITOR_TYPE_BURNING_ENERGY_GENERATION = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_burning_energy_generation"), "Hot");
+            EnderIO.loc("loot_capacitor_burning_energy_generation"), "Hot");
     public static final MutableComponent LOOT_CAPACITOR_TYPE_UNKNOWN = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_unknown"), "Mystery");
+            EnderIO.loc("loot_capacitor_unknown"), "Mystery");
 
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_FAILED = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_failed"), "Failed");
+            EnderIO.loc("loot_capacitor_modifier_failed"), "Failed");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_SIMPLE = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_simple"), "Simple");
+            EnderIO.loc("loot_capacitor_modifier_simple"), "Simple");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_NICE = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_nice"), "Nice");
+            EnderIO.loc("loot_capacitor_modifier_nice"), "Nice");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_GOOD = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_good"), "Good");
+            EnderIO.loc("loot_capacitor_modifier_good"), "Good");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_ENHANCED = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_enhanced"), "Enhanced");
+            EnderIO.loc("loot_capacitor_modifier_enhanced"), "Enhanced");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_PREMIUM = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_premium"), "Premium");
+            EnderIO.loc("loot_capacitor_modifier_premium"), "Premium");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_INCREDIBLY = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_incredibly"), "Incredibly");
+            EnderIO.loc("loot_capacitor_modifier_incredibly"), "Incredibly");
     public static final MutableComponent LOOT_CAPACITOR_MODIFIER_UNSTABLE = addTranslation("item",
-            EnderIOBase.loc("loot_capacitor_modifier_unstable"), "Unstable");
+            EnderIO.loc("loot_capacitor_modifier_unstable"), "Unstable");
 
     // endregion
 
     // endregion
 
-    public static final Component GLIDER_DISABLED = addTranslation("message", EnderIOBase.loc("glider.disable"),
+    public static final Component GLIDER_DISABLED = addTranslation("message", EnderIO.loc("glider.disable"),
             "Gliding is disabled: ");
     public static final Component GLIDER_DISABLED_FALL_FLYING = addTranslation("message",
-            EnderIOBase.loc("glider.disable.fall_flying"), "Elytra Flight");
+            EnderIO.loc("glider.disable.fall_flying"), "Elytra Flight");
 
     // region Enchantments
 
@@ -177,21 +178,21 @@ public class EIOLang {
 
     private static Component enchantmentDescription(String enchantmentName, String suffix, String description) {
         return TooltipUtil.style(addTranslation("enchantment",
-                EnderIOBase.loc(String.format("%s.%s", enchantmentName, suffix)), description));
+                EnderIO.loc(String.format("%s.%s", enchantmentName, suffix)), description));
     }
 
     // endregion
 
     // region Filters
 
-    public static final Component FILTER = addTranslation("gui", EnderIOBase.loc("filter"), "Filter");
-    public static final Component CONFIRM = addTranslation("gui", EnderIOBase.loc("confirm"), "Confirm");
+    public static final Component FILTER = addTranslation("gui", EnderIO.loc("filter"), "Filter");
+    public static final Component CONFIRM = addTranslation("gui", EnderIO.loc("confirm"), "Confirm");
 
     // endregion
 
     // region Graves
 
-    public static final Component GRAVE_WRONG_OWNER = addTranslation("message", EnderIOBase.loc("grave.wrong_owner"),
+    public static final Component GRAVE_WRONG_OWNER = addTranslation("message", EnderIO.loc("grave.wrong_owner"),
             "This grave is not yours! You cannot open it.");
 
     // endregion
@@ -199,51 +200,51 @@ public class EIOLang {
     // region Grinding balls
 
     public static final MutableComponent GRINDINGBALL_MAIN_OUTPUT = addTranslation("tooltip",
-            EnderIOBase.loc("grinding_ball_main_output"), "Main Output %s%%");
+            EnderIO.loc("grinding_ball_main_output"), "Main Output %s%%");
     public static final MutableComponent GRINDINGBALL_BONUS_OUTPUT = addTranslation("tooltip",
-            EnderIOBase.loc("grinding_ball_bonus_output"), "Bonus Output %s%%");
+            EnderIO.loc("grinding_ball_bonus_output"), "Bonus Output %s%%");
     public static final MutableComponent GRINDINGBALL_POWER_USE = addTranslation("tooltip",
-            EnderIOBase.loc("grinding_ball_power_use"), "Power Use %s%%");
+            EnderIO.loc("grinding_ball_power_use"), "Power Use %s%%");
 
     // endregion
 
     // region GUI
 
-    public static final MutableComponent ENERGY_AMOUNT = addTranslation("info", EnderIOBase.loc("energy.amount"),
+    public static final MutableComponent ENERGY_AMOUNT = addTranslation("info", EnderIO.loc("energy.amount"),
             "%s \u00B5I");
-    public static final Component RANGE = addTranslation("gui", EnderIOBase.loc("range"), "Range");
-    public static final Component SHOW_RANGE = addTranslation("gui", EnderIOBase.loc("range.show"), "Show Range");
-    public static final Component HIDE_RANGE = addTranslation("gui", EnderIOBase.loc("range.hide"), "Hide Range");
-    public static final Component WHITELIST_FILTER = addTranslation("gui", EnderIOBase.loc("filter.whitelist"),
+    public static final Component RANGE = addTranslation("gui", EnderIO.loc("range"), "Range");
+    public static final Component SHOW_RANGE = addTranslation("gui", EnderIO.loc("range.show"), "Show Range");
+    public static final Component HIDE_RANGE = addTranslation("gui", EnderIO.loc("range.hide"), "Hide Range");
+    public static final Component WHITELIST_FILTER = addTranslation("gui", EnderIO.loc("filter.whitelist"),
             "Whitelist");
-    public static final Component BLACKLIST_FILTER = addTranslation("gui", EnderIOBase.loc("filter.blacklist"),
+    public static final Component BLACKLIST_FILTER = addTranslation("gui", EnderIO.loc("filter.blacklist"),
             "BlackList");
-    public static final Component NBT_FILTER = addTranslation("gui", EnderIOBase.loc("filter.nbt"), "Match NBT");
-    public static final Component NO_NBT_FILTER = addTranslation("gui", EnderIOBase.loc("filter.nonbt"), "Ignore NBT");
+    public static final Component NBT_FILTER = addTranslation("gui", EnderIO.loc("filter.nbt"), "Match NBT");
+    public static final Component NO_NBT_FILTER = addTranslation("gui", EnderIO.loc("filter.nonbt"), "Ignore NBT");
 
-    public static final Component IOCONFIG = addTranslation("gui", EnderIOBase.loc("ioconfig"), "IO Configuration");
-    public static final Component TOGGLE_NEIGHBOUR = addTranslation("gui", EnderIOBase.loc("ioconfig.neighbour"),
+    public static final Component IOCONFIG = addTranslation("gui", EnderIO.loc("ioconfig"), "IO Configuration");
+    public static final Component TOGGLE_NEIGHBOUR = addTranslation("gui", EnderIO.loc("ioconfig.neighbour"),
             "Show/Hide Neighbours");
 
-    public static final Component PUSH = addTranslation("gui", EnderIOBase.loc("ioconfig.push"), "Push");
-    public static final Component PULL = addTranslation("gui", EnderIOBase.loc("ioconfig.pull"), "Pull");
-    public static final Component BOTH = addTranslation("gui", EnderIOBase.loc("ioconfig.both"), "Push / Pull");
-    public static final Component DISABLED = addTranslation("gui", EnderIOBase.loc("ioconfig.disabled"), "Disabled");
-    public static final Component NONE = addTranslation("gui", EnderIOBase.loc("ioconfig.none"), "None");
+    public static final Component PUSH = addTranslation("gui", EnderIO.loc("ioconfig.push"), "Push");
+    public static final Component PULL = addTranslation("gui", EnderIO.loc("ioconfig.pull"), "Pull");
+    public static final Component BOTH = addTranslation("gui", EnderIO.loc("ioconfig.both"), "Push / Pull");
+    public static final Component DISABLED = addTranslation("gui", EnderIO.loc("ioconfig.disabled"), "Disabled");
+    public static final Component NONE = addTranslation("gui", EnderIO.loc("ioconfig.none"), "None");
 
-    public static final MutableComponent NOCAP_TITLE = addTranslation("gui", EnderIOBase.loc("nocap.title"),
+    public static final MutableComponent NOCAP_TITLE = addTranslation("gui", EnderIO.loc("nocap.title"),
             "Capacitor Missing");
-    public static final MutableComponent NOCAP_DESC = addTranslation("gui", EnderIOBase.loc("nocap.desc"),
+    public static final MutableComponent NOCAP_DESC = addTranslation("gui", EnderIO.loc("nocap.desc"),
             "Insert any capacitor so \n this machine can work!");
 
-    public static Component VISIBLE = addTranslation("gui", EnderIOBase.loc("visible.true"), "Visible");
-    public static Component NOT_VISIBLE = addTranslation("gui", EnderIOBase.loc("visible.false"), "Hidden");
+    public static Component VISIBLE = addTranslation("gui", EnderIO.loc("visible.true"), "Visible");
+    public static Component NOT_VISIBLE = addTranslation("gui", EnderIO.loc("visible.false"), "Hidden");
 
     // endregion
 
     // region Entity Storage
 
-    public static final MutableComponent TOOLTIP_NO_SOULBOUND = addTranslation("gui", EnderIOBase.loc("no_soulbound"),
+    public static final MutableComponent TOOLTIP_NO_SOULBOUND = addTranslation("gui", EnderIO.loc("no_soulbound"),
             "Bind a soul to the item to be able to use it");
 
     // endregion
@@ -251,49 +252,49 @@ public class EIOLang {
     // region Glider
 
     public static final Component USE_GLIDER_ADVANCEMENT_TITLE = addTranslation("advancements",
-            EnderIOBase.loc("use_glider.title"), "Majestic");
+            EnderIO.loc("use_glider.title"), "Majestic");
     public static final Component USE_GLIDER_ADVANCEMENT_DESCRIPTION = addTranslation("advancements",
-            EnderIOBase.loc("use_glider.description"), "Do you really trust some leather?");
+            EnderIO.loc("use_glider.description"), "Do you really trust some leather?");
 
-    public static final Component RICH_ADVANCEMENT_TITLE = addTranslation("advancements", EnderIOBase.loc("rich.title"),
+    public static final Component RICH_ADVANCEMENT_TITLE = addTranslation("advancements", EnderIO.loc("rich.title"),
             "Don't tell the others");
     public static final Component RICH_ADVANCEMENT_DESCRIPTION = addTranslation("advancements",
-            EnderIOBase.loc("rich.description"), "Make others think you are rich");
+            EnderIO.loc("rich.description"), "Make others think you are rich");
     public static final Component RICHER_ADVANCEMENT_TITLE = addTranslation("advancements",
-            EnderIOBase.loc("richer.title"), "Is this real?");
+            EnderIO.loc("richer.title"), "Is this real?");
     public static final Component RICHER_ADVANCEMENT_DESCRIPTION = addTranslation("advancements",
-            EnderIOBase.loc("richer.description"), "Make others think you are richer");
+            EnderIO.loc("richer.description"), "Make others think you are richer");
 
     // endregion
 
     // region Misc Tooltips
 
     public static final Component SHOW_DETAIL_TOOLTIP = addTranslation("tooltip",
-            EnderIOBase.loc("gui.show_advanced_tooltip"), "<Hold Shift>").withStyle(ChatFormatting.GRAY,
+            EnderIO.loc("gui.show_advanced_tooltip"), "<Hold Shift>").withStyle(ChatFormatting.GRAY,
                     ChatFormatting.ITALIC);
 
     // endregion
 
     // region Guidebook
 
-    public static final Component GUIDEBOOK_TITLE = addTranslation("guidebook", EnderIOBase.loc("book_title"),
+    public static final Component GUIDEBOOK_TITLE = addTranslation("guidebook", EnderIO.loc("book_title"),
             "Book Title");
-    public static final Component GUIDEBOOK_LANDING_TEXT = addTranslation("guidebook", EnderIOBase.loc("landing_text"),
+    public static final Component GUIDEBOOK_LANDING_TEXT = addTranslation("guidebook", EnderIO.loc("landing_text"),
             "Landing Text");
 
     // endregion
 
     // region JEI
 
-    public static final Component JEI_FIRE_CRAFTING_TITLE = addTranslation("jei", EnderIOBase.loc("fire_crafting"),
+    public static final Component JEI_FIRE_CRAFTING_TITLE = addTranslation("jei", EnderIO.loc("fire_crafting"),
             "title", "Fire Crafting");
     public static final Component JEI_FIRE_CRAFTING_VALID_BLOCKS = addTranslation("jei",
-            EnderIOBase.loc("fire_crafting"), "valid_blocks", "Valid Blocks:");
+            EnderIO.loc("fire_crafting"), "valid_blocks", "Valid Blocks:");
     public static final Component JEI_FIRE_CRAFTING_VALID_DIMENSIONS = addTranslation("jei",
-            EnderIOBase.loc("fire_crafting"), "valid_dimensions", "Valid Dimensions:");
-    public static final Component JEI_FIRE_CRAFTING_LOOT_TABLE = addTranslation("jei", EnderIOBase.loc("fire_crafting"),
+            EnderIO.loc("fire_crafting"), "valid_dimensions", "Valid Dimensions:");
+    public static final Component JEI_FIRE_CRAFTING_LOOT_TABLE = addTranslation("jei", EnderIO.loc("fire_crafting"),
             "loot_table", "Loot Table:");
-    public static final Component JEI_FIRE_CRAFTING_MAX_DROPS = addTranslation("jei", EnderIOBase.loc("fire_crafting"),
+    public static final Component JEI_FIRE_CRAFTING_MAX_DROPS = addTranslation("jei", EnderIO.loc("fire_crafting"),
             "max_drops", "Max Item Drops:");
 
     // endregion
@@ -305,18 +306,18 @@ public class EIOLang {
             String lightingName = lighting != GlassLighting.NONE ? lighting.englishName() + " " : "";
             String lightingKeyName = lighting != GlassLighting.NONE ? "_" + lighting.shortName() : "";
 
-            addTranslation("block", EnderIOBase.loc("clear_glass" + lightingKeyName), lightingName + "Clear Glass");
-            addTranslation("block", EnderIOBase.loc("fused_quartz" + lightingKeyName), lightingName + "Fused Quartz");
+            addTranslation("block", EnderIO.loc("clear_glass" + lightingKeyName), lightingName + "Clear Glass");
+            addTranslation("block", EnderIO.loc("fused_quartz" + lightingKeyName), lightingName + "Fused Quartz");
 
             for (var color : DyeColor.values()) {
                 String colorName = createEnglishPrefix(color);
 
                 addTranslation("block",
-                        EnderIOBase
+                        EnderIO
                                 .loc("clear_glass" + lightingKeyName + "_" + color.getName().toLowerCase(Locale.ROOT)),
                         colorName + lightingName + "Clear Glass");
                 addTranslation("block",
-                        EnderIOBase
+                        EnderIO
                                 .loc("fused_quartz" + lightingKeyName + "_" + color.getName().toLowerCase(Locale.ROOT)),
                         colorName + lightingName + "Fused Quartz");
             }

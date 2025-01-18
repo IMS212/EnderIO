@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.widget;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.machines.common.io.energy.IMachineEnergyStorage;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class NewCapacitorEnergyWidget extends NewEnergyWidget {
-    private static final ResourceLocation ENERGY_BAR_ERROR_SPRITE = EnderIOBase.loc("widget/energy_bar_error");
+    private static final ResourceLocation ENERGY_BAR_ERROR_SPRITE = EnderIO.loc("widget/energy_bar_error");
 
     private final Supplier<Boolean> cap;
 

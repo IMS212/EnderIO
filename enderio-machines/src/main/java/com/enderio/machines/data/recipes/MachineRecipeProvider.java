@@ -1,6 +1,6 @@
 package com.enderio.machines.data.recipes;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.base.common.tag.EIOTags;
@@ -63,7 +63,7 @@ public class MachineRecipeProvider extends RecipeProvider {
             .pattern("BCB")
             .pattern("EEE")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(EIOItems.DOUBLE_LAYER_CAPACITOR).build()))
-            .save(recipeOutput, EnderIOBase.loc("advanced_capacitor_bank_upgrade"));
+            .save(recipeOutput, EnderIO.loc("advanced_capacitor_bank_upgrade"));
 
         ShapedRecipeBuilder
             .shaped(RecipeCategory.MISC, MachineBlocks.CAPACITOR_BANKS.get(CapacitorTier.VIBRANT).get())
@@ -86,7 +86,7 @@ public class MachineRecipeProvider extends RecipeProvider {
             .pattern("OCO")
             .pattern("AOA")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(EIOItems.BASIC_CAPACITOR).build()))
-            .save(recipeOutput, EnderIOBase.loc("vibrant_capacitor_bank_upgrade"));
+            .save(recipeOutput, EnderIO.loc("vibrant_capacitor_bank_upgrade"));
 
         ShapedRecipeBuilder
             .shaped(RecipeCategory.MISC, MachineBlocks.FLUID_TANK.get())
@@ -321,7 +321,7 @@ public class MachineRecipeProvider extends RecipeProvider {
             .pattern("PDP")
             .pattern("CSC")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.ENERGETIC)))
-            .save(recipeOutput, EnderIOBase.loc(RecipeBuilder.getDefaultRecipeId(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.PULSATING)).getPath()));
+            .save(recipeOutput, EnderIO.loc(RecipeBuilder.getDefaultRecipeId(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.PULSATING)).getPath()));
 
         ShapedRecipeBuilder
             .shaped(RecipeCategory.MISC, MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.VIBRANT))
@@ -335,7 +335,7 @@ public class MachineRecipeProvider extends RecipeProvider {
             .pattern("PGP")
             .pattern("CSC")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.PULSATING)))
-            .save(recipeOutput, EnderIOBase.loc(RecipeBuilder.getDefaultRecipeId(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.VIBRANT)).getPath()));
+            .save(recipeOutput, EnderIO.loc(RecipeBuilder.getDefaultRecipeId(MachineBlocks.SOLAR_PANELS.get(SolarPanelTier.VIBRANT)).getPath()));
 
         ShapedRecipeBuilder
             .shaped(RecipeCategory.MISC, MachineBlocks.PAINTING_MACHINE.get())

@@ -1,6 +1,6 @@
 package com.enderio.machines.common.blocks.base.menu;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.machines.common.blocks.base.blockentity.PoweredMachineBlockEntity;
 import com.enderio.machines.common.blocks.base.energy.EnergyStorageInfo;
 import com.enderio.machines.common.network.menu.EnergyStorageSyncSlot;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.jetbrains.annotations.Nullable;
 
 public class PoweredMachineMenu<T extends PoweredMachineBlockEntity> extends MachineMenu<T> {
-    protected static final ResourceLocation EMPTY_CAPACITOR_SLOT = EnderIOBase.loc("item/empty_capacitor_slot");
+    protected static final ResourceLocation EMPTY_CAPACITOR_SLOT = EnderIO.loc("item/empty_capacitor_slot");
 
     private final EnergyStorageSyncSlot energySyncSlot;
 

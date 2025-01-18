@@ -35,6 +35,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated(forRemoval = true, since = "7.1")
 public class LegacyMachineBlock extends BaseEntityBlock {
     public static final Codec<Supplier<BlockEntityType<? extends LegacyMachineBlockEntity>>> BLOCK_ENTITY_TYPE_CODEC = BuiltInRegistries.BLOCK_ENTITY_TYPE
             .holderByNameCodec()

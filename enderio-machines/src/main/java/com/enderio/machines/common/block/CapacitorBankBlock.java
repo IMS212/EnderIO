@@ -1,6 +1,6 @@
 package com.enderio.machines.common.block;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.core.client.item.AdvancedTooltipProvider;
 import com.enderio.core.common.energy.ItemStackEnergy;
@@ -39,7 +39,7 @@ public class CapacitorBankBlock extends LegacyMachineBlock implements AdvancedTo
 
     public final CapacityTier tier;
 
-    public static final ResourceLocation PLACE_ADVANCEMENT_ID = EnderIOBase.loc("place_capacitor_bank");
+    public static final ResourceLocation PLACE_ADVANCEMENT_ID = EnderIO.loc("place_capacitor_bank");
 
     public CapacitorBankBlock(Properties properties,
             RegiliteBlockEntity<? extends LegacyMachineBlockEntity> blockEntityType, CapacityTier tier) {

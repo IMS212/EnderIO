@@ -85,8 +85,8 @@ public class RedstoneCountFilter implements RedstoneInsertFilter {
     public record Component(DyeColor channel1, int maxCount, int count, boolean deactivated) {
         public static final Codec<Component> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(DyeColor.CODEC.fieldOf("channel1").forGetter(Component::channel1),
-                    ExtraCodecs.POSITIVE_INT.fieldOf("maxCount").forGetter(Component::maxCount),
-                    ExtraCodecs.POSITIVE_INT.fieldOf("ticks").forGetter(Component::count),
+                    ExtraCodecs.NON_NEGATIVE_INT.fieldOf("maxCount").forGetter(Component::maxCount),
+                    ExtraCodecs.NON_NEGATIVE_INT.fieldOf("ticks").forGetter(Component::count),
                     Codec.BOOL.fieldOf("deactivated").forGetter(Component::deactivated))
                 .apply(instance, Component::new)
         );

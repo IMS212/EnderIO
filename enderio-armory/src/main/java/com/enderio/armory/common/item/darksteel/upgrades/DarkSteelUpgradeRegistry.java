@@ -1,14 +1,10 @@
 package com.enderio.armory.common.item.darksteel.upgrades;
 
-import com.enderio.armory.EnderIOArmory;
 import com.enderio.armory.api.capability.IDarkSteelUpgrade;
 import com.enderio.armory.common.item.darksteel.upgrades.direct.DirectUpgrade;
 import com.enderio.armory.common.item.darksteel.upgrades.explosive.ExplosivePenetrationUpgrade;
 import com.enderio.armory.common.item.darksteel.upgrades.explosive.ExplosiveUpgrade;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-
+import com.enderio.base.api.EnderIO;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,10 +12,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Supplier;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 public final class DarkSteelUpgradeRegistry {
 
-    public static final String UPGRADE_PREFIX = EnderIOArmory.REGISTRY_NAMESPACE + ".darksteel.upgrade.";
+    public static final String UPGRADE_PREFIX = EnderIO.NAMESPACE + ".darksteel.upgrade.";
 
     private static final DarkSteelUpgradeRegistry INST = new DarkSteelUpgradeRegistry();
     private static final String UPGRADE_IN_STACK_KEY = "dark_steel_upgrade";
@@ -41,7 +40,8 @@ public final class DarkSteelUpgradeRegistry {
 
     private final Map<ResourceLocation, Set<String>> possibleUpgrades = new HashMap<>();
 
-    private DarkSteelUpgradeRegistry() {}
+    private DarkSteelUpgradeRegistry() {
+    }
 
     // region Upgrade register
 
@@ -65,8 +65,8 @@ public final class DarkSteelUpgradeRegistry {
     public void writeUpgradeToItemStack(ItemStack stack, IDarkSteelUpgrade upgrade) {
         CompoundTag rootTag = new CompoundTag();
         rootTag.putString("name", upgrade.getName());
-        //rootTag.put("data", upgrade.serializeNBT(lookupProvider));
-        //stack.getOrCreateTag().put(UPGRADE_IN_STACK_KEY, rootTag);
+        // rootTag.put("data", upgrade.serializeNBT(lookupProvider));
+        // stack.getOrCreateTag().put(UPGRADE_IN_STACK_KEY, rootTag);
     }
 
     public boolean hasUpgrade(ItemStack stack) {
@@ -95,7 +95,8 @@ public final class DarkSteelUpgradeRegistry {
 
     // endregion
 
-    // region Upgrade Sets (the set of upgrades that can be applied to an upgradable item
+    // region Upgrade Sets (the set of upgrades that can be applied to an upgradable
+    // item
 
     public void addUpgradesForItem(ResourceLocation forItem, String... upgrades) {
         Set<String> currentValues = possibleUpgrades.getOrDefault(forItem, new HashSet<>());

@@ -1,6 +1,6 @@
 package com.enderio.base.data.recipe;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.block.glass.GlassBlocks;
 import com.enderio.base.common.block.glass.GlassCollisionPredicate;
 import com.enderio.base.common.init.EIOBlocks;
@@ -48,7 +48,7 @@ public class GlassRecipeProvider extends RecipeProvider {
             }
             builder.requires(color.getTag())
                 .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(blocks.CLEAR.get()))
-                .save(recipeOutput, EnderIOBase.loc("recolor_" + BuiltInRegistries.BLOCK.getKey(blocks.COLORS.get(color).get()).getPath()));
+                .save(recipeOutput, EnderIO.loc("recolor_" + BuiltInRegistries.BLOCK.getKey(blocks.COLORS.get(color).get()).getPath()));
         }
     }
 
@@ -67,7 +67,7 @@ public class GlassRecipeProvider extends RecipeProvider {
             .pattern("GTG")
             .pattern("GGG")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(token))
-            .save(recipeOutput, EnderIOBase.loc("collision_token_" + BuiltInRegistries.BLOCK.getKey(output).getPath()));
+            .save(recipeOutput, EnderIO.loc("collision_token_" + BuiltInRegistries.BLOCK.getKey(output).getPath()));
 
     }
     private static void invert(GlassBlocks blocks, RecipeOutput recipeOutput) {
@@ -85,6 +85,6 @@ public class GlassRecipeProvider extends RecipeProvider {
             .pattern("GTG")
             .pattern("GGG")
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(blocks.CLEAR.get()))
-            .save(recipeOutput, EnderIOBase.loc("invert_" + BuiltInRegistries.BLOCK.getKey(output).getPath()));
+            .save(recipeOutput, EnderIO.loc("invert_" + BuiltInRegistries.BLOCK.getKey(output).getPath()));
     }
 }

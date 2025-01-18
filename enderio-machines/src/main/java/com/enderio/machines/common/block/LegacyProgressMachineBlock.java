@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 /**
  * A block that can display its powered state when performing its action.
  */
+@Deprecated(forRemoval = true, since = "7.1")
 public class LegacyProgressMachineBlock extends LegacyMachineBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;

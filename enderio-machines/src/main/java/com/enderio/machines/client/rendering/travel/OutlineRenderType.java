@@ -1,16 +1,15 @@
 package com.enderio.machines.client.rendering.travel;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.OptionalDouble;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.OptionalDouble;
 
 public class OutlineRenderType extends RenderType {
 
@@ -19,8 +18,8 @@ public class OutlineRenderType extends RenderType {
     private final RenderType parent;
 
     private OutlineRenderType(RenderType parent) {
-        super("Outline" + parent.name, parent.format(), parent.mode(), parent.bufferSize(), parent.affectsCrumbling(), parent.sortOnUpload,
-            parent::setupRenderState, parent::clearRenderState);
+        super("Outline" + parent.name, parent.format(), parent.mode(), parent.bufferSize(), parent.affectsCrumbling(),
+                parent.sortOnUpload, parent::setupRenderState, parent::clearRenderState);
         this.parent = parent;
     }
 
@@ -47,7 +46,7 @@ public class OutlineRenderType extends RenderType {
     public void setupRenderState() {
         this.parent.setupRenderState();
         if (Minecraft.getInstance().levelRenderer.entityTarget() != null) {
-            //noinspection ConstantConditions
+            // noinspection ConstantConditions
             Minecraft.getInstance().levelRenderer.entityTarget().bindWrite(false);
         }
     }
@@ -59,16 +58,16 @@ public class OutlineRenderType extends RenderType {
     }
 
     public static RenderType createLines(String name, int strength) {
-        return RenderType.create(EnderIOBase.REGISTRY_NAMESPACE + "_" + name, DefaultVertexFormat.POSITION_COLOR_NORMAL, VertexFormat.Mode.LINES, 256, false, false,
-            CompositeState
-                .builder()
-                .setShaderState(RenderStateShard.RENDERTYPE_LINES_SHADER)
-                .setLineState(new LineStateShard(OptionalDouble.of(strength)))
-                .setLayeringState(RenderStateShard.VIEW_OFFSET_Z_LAYERING)
-                .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
-                .setOutputState(RenderStateShard.ITEM_ENTITY_TARGET)
-                .setWriteMaskState(RenderStateShard.COLOR_DEPTH_WRITE)
-                .setCullState(RenderStateShard.NO_CULL)
-                .createCompositeState(false));
+        return RenderType.create(EnderIO.NAMESPACE + "_" + name, DefaultVertexFormat.POSITION_COLOR_NORMAL,
+                VertexFormat.Mode.LINES, 256, false, false,
+                CompositeState.builder()
+                        .setShaderState(RenderStateShard.RENDERTYPE_LINES_SHADER)
+                        .setLineState(new LineStateShard(OptionalDouble.of(strength)))
+                        .setLayeringState(RenderStateShard.VIEW_OFFSET_Z_LAYERING)
+                        .setTransparencyState(RenderStateShard.TRANSLUCENT_TRANSPARENCY)
+                        .setOutputState(RenderStateShard.ITEM_ENTITY_TARGET)
+                        .setWriteMaskState(RenderStateShard.COLOR_DEPTH_WRITE)
+                        .setCullState(RenderStateShard.NO_CULL)
+                        .createCompositeState(false));
     }
 }

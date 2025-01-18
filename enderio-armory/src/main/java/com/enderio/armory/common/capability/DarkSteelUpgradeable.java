@@ -1,13 +1,12 @@
 package com.enderio.armory.common.capability;
 
-import com.enderio.EnderIOBase;
 import com.enderio.armory.api.capability.IDarkSteelUpgradable;
 import com.enderio.armory.api.capability.IDarkSteelUpgrade;
 import com.enderio.armory.common.init.ArmoryCapabilities;
 import com.enderio.armory.common.item.darksteel.upgrades.DarkSteelUpgradeRegistry;
 import com.enderio.armory.common.item.darksteel.upgrades.EmpoweredUpgrade;
 import com.enderio.armory.common.item.darksteel.upgrades.EmpoweredUpgradeTier;
-import com.enderio.base.common.init.EIOCapabilities;
+import com.enderio.base.api.EnderIO;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -98,7 +97,7 @@ public class DarkSteelUpgradeable implements IDarkSteelUpgradable, INBTSerializa
     private ResourceLocation onItem;
 
     public DarkSteelUpgradeable() {
-        this(EnderIOBase.loc("empty"));
+        this(EnderIO.loc("empty"));
     }
 
     public DarkSteelUpgradeable(ResourceLocation onItem) {

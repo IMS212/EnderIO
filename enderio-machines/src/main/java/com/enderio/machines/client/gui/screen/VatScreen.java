@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.gui.widget.RedstoneControlPickerWidget;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.machines.client.gui.screen.base.MachineScreen;
@@ -23,13 +23,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class VatScreen extends MachineScreen<VatMenu> {
 
-    public static final ResourceLocation VAT_BG = EnderIOBase.loc("textures/gui/screen/vat.png");
+    public static final ResourceLocation VAT_BG = EnderIO.loc("textures/gui/screen/vat.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 166;
 
-    private static final ResourceLocation VAT_COVER = EnderIOBase.loc("vat_cover");
-    public static final ResourceLocation MOVE_FLUID = EnderIOBase.loc("buttons/move_fluid");
-    public static final ResourceLocation VOID_FLUID = EnderIOBase.loc("buttons/void_fluid");
+    private static final ResourceLocation VAT_COVER = EnderIO.loc("vat_cover");
+    public static final ResourceLocation MOVE_FLUID = EnderIO.loc("buttons/move_fluid");
+    public static final ResourceLocation VOID_FLUID = EnderIO.loc("buttons/void_fluid");
 
     private static final WidgetSprites MOVE_SPRITES = new WidgetSprites(MOVE_FLUID, MOVE_FLUID);
     private static final WidgetSprites VOID_SPRITES = new WidgetSprites(VOID_FLUID, VOID_FLUID);

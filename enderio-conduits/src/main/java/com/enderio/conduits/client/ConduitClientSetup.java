@@ -1,6 +1,6 @@
 package com.enderio.conduits.client;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.EnderIOConduits;
 import com.enderio.conduits.api.model.RegisterConduitCoreModelModifiersEvent;
 import com.enderio.conduits.api.screen.RegisterConduitScreenExtensionsEvent;
@@ -63,9 +63,9 @@ public class ConduitClientSetup {
 
     @SubscribeEvent
     public static void modelLoader(ModelEvent.RegisterGeometryLoaders event) {
-        event.register(EnderIOBase.loc("conduit"), new ConduitGeometry.Loader());
-        event.register(EnderIOBase.loc("conduit_item"), new ConduitItemModelLoader());
-        event.register(EnderIOBase.loc("facades_item"), new FacadeItemGeometry.Loader());
+        event.register(EnderIO.loc("conduit"), new ConduitGeometry.Loader());
+        event.register(EnderIO.loc("conduit_item"), new ConduitItemModelLoader());
+        event.register(EnderIO.loc("facades_item"), new FacadeItemGeometry.Loader());
     }
 
     @SubscribeEvent
@@ -87,7 +87,7 @@ public class ConduitClientSetup {
     }
 
     private static ModelResourceLocation loc(String modelName) {
-        ModelResourceLocation loc = ModelResourceLocation.standalone(EnderIOBase.loc(modelName));
+        ModelResourceLocation loc = ModelResourceLocation.standalone(EnderIO.loc(modelName));
         MODEL_LOCATIONS.add(loc);
         return loc;
     }

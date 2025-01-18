@@ -1,6 +1,6 @@
 package com.enderio.base.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.common.capability.EntityFilterCapability;
 import com.enderio.base.common.init.EIODataComponents;
@@ -23,16 +23,16 @@ import org.joml.Vector2i;
 public class EntityFilterScreen extends EIOScreen<EntityFilterMenu> {
 
     private static final Vector2i BG_SIZE = new Vector2i(183,201);
-    private static ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/40/item_filter.png");
-    private static final ResourceLocation BLACKLIST_TEXTURE = EnderIOBase.loc("textures/gui/icons/blacklist.png");
-    private static final ResourceLocation NBT_TEXTURE = EnderIOBase.loc("textures/gui/icons/range_buttons.png");
+    private static ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/40/item_filter.png");
+    private static final ResourceLocation BLACKLIST_TEXTURE = EnderIO.loc("textures/gui/icons/blacklist.png");
+    private static final ResourceLocation NBT_TEXTURE = EnderIO.loc("textures/gui/icons/range_buttons.png");
 
     public EntityFilterScreen(EntityFilterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         BG_TEXTURE = switch (pMenu.getFilter().getEntries().size()) {
-            case 5 -> EnderIOBase.loc("textures/gui/40/basic_item_filter.png");
-            case 2*5 ->  EnderIOBase.loc("textures/gui/40/advanced_item_filter.png");
-            case 4*9 ->  EnderIOBase.loc("textures/gui/40/big_item_filter.png");
+            case 5 -> EnderIO.loc("textures/gui/40/basic_item_filter.png");
+            case 2*5 ->  EnderIO.loc("textures/gui/40/advanced_item_filter.png");
+            case 4*9 ->  EnderIO.loc("textures/gui/40/big_item_filter.png");
             default -> throw new NotImplementedException();
         };
     }

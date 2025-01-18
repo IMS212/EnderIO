@@ -1,6 +1,6 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.integrations.jei.JEIUtils;
 import com.enderio.machines.client.gui.screen.VatScreen;
 import com.enderio.machines.common.blocks.vat.FermentingRecipe;
@@ -28,8 +28,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.Nullable;
 
 public class VATCategory extends MachineRecipeCategory<RecipeHolder<FermentingRecipe>> {
-    public static final RecipeType<RecipeHolder<FermentingRecipe>> TYPE = JEIUtils
-            .createRecipeType(EnderIOBase.REGISTRY_NAMESPACE, "vat_fermenting", FermentingRecipe.class);
+    public static final RecipeType<RecipeHolder<FermentingRecipe>> TYPE = JEIUtils.createRecipeType(EnderIO.NAMESPACE,
+            "vat_fermenting", FermentingRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;

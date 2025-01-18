@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.core.client.gui.widgets.ToggleIconButton;
 import com.enderio.machines.client.gui.screen.base.MachineScreen;
@@ -13,17 +13,17 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class TravelAnchorScreen extends MachineScreen<TravelAnchorMenu> {
 
-    private static final ResourceLocation TRAVEL_ANCHOR_BG = EnderIOBase.loc("textures/gui/screen/travel_anchor.png");
+    private static final ResourceLocation TRAVEL_ANCHOR_BG = EnderIO.loc("textures/gui/screen/travel_anchor.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 184;
 
     private EditBox nameInput;
 
-    private static final ResourceLocation VISIBILITY_BTNS = EnderIOBase
+    private static final ResourceLocation VISIBILITY_BTNS = EnderIO
             .loc("textures/gui/icons/visibility_buttons.png");
 
-    private static final ResourceLocation VISIBLE_BUTTON = EnderIOBase.loc("screen/travel_anchor/visible");
-    private static final ResourceLocation NOT_VISIBLE_BUTTON = EnderIOBase.loc("screen/travel_anchor/not_visible");
+    private static final ResourceLocation VISIBLE_BUTTON = EnderIO.loc("screen/travel_anchor/visible");
+    private static final ResourceLocation NOT_VISIBLE_BUTTON = EnderIO.loc("screen/travel_anchor/not_visible");
 
     public TravelAnchorScreen(TravelAnchorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

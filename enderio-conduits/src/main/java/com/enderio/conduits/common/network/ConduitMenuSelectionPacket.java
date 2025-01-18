@@ -1,6 +1,6 @@
 package com.enderio.conduits.common.network;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.Conduit;
 import com.enderio.conduits.api.EnderIOConduitsRegistries;
 import net.minecraft.core.Holder;
@@ -13,7 +13,7 @@ public record ConduitMenuSelectionPacket(
     Holder<Conduit<?>> conduit
 ) implements CustomPacketPayload {
 
-    public static final Type<ConduitMenuSelectionPacket> TYPE = new Type<>(EnderIOBase.loc("conduit_menu_selection"));
+    public static final Type<ConduitMenuSelectionPacket> TYPE = new Type<>(EnderIO.loc("conduit_menu_selection"));
 
     public static StreamCodec<RegistryFriendlyByteBuf, ConduitMenuSelectionPacket> STREAM_CODEC =
         ByteBufCodecs.holderRegistry(EnderIOConduitsRegistries.Keys.CONDUIT)

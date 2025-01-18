@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.icon;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.core.client.icon.EnumIconMap;
 import com.enderio.machines.common.blocks.alloy.AlloySmelterMode;
 import com.enderio.machines.common.blocks.base.state.MachineStateType;
@@ -15,10 +15,10 @@ public class MachineEnumIcons {
             "machine_state_type_new");
 
     private static <T extends Enum<T>> EnumIconMap<T> createAll(Class<T> enumClass, String iconFolder) {
-        return new EnumIconMap<>(EnderIOBase.REGISTRY_NAMESPACE, enumClass, iconFolder);
+        return new EnumIconMap<>(EnderIO.NAMESPACE, enumClass, iconFolder);
     }
 
     private static <T extends Enum<T>> EnumIconMap.Builder<T> builder(Class<T> enumClass, String iconFolder) {
-        return new EnumIconMap.Builder<>(EnderIOBase.REGISTRY_NAMESPACE, enumClass, iconFolder);
+        return new EnumIconMap.Builder<>(EnderIO.NAMESPACE, enumClass, iconFolder);
     }
 }

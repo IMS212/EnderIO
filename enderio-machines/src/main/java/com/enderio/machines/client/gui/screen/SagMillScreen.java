@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.grindingball.GrindingBallData;
 import com.enderio.base.client.gui.widget.RedstoneControlPickerWidget;
 import com.enderio.base.common.lang.EIOLang;
@@ -23,12 +23,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class SagMillScreen extends MachineScreen<SagMillMenu> {
-    public static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/screen/sag_mill.png");
+    public static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/screen/sag_mill.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 208;
 
-    private static final ResourceLocation PROGRESS_SPRITE = EnderIOBase.loc("screen/sag_mill/progress");
-    private static final ResourceLocation BALL_DURABILITY_SPRITE = EnderIOBase
+    private static final ResourceLocation PROGRESS_SPRITE = EnderIO.loc("screen/sag_mill/progress");
+    private static final ResourceLocation BALL_DURABILITY_SPRITE = EnderIO
             .loc("screen/sag_mill/grinding_ball_durability");
 
     public SagMillScreen(SagMillMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

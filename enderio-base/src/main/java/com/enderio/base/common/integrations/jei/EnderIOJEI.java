@@ -1,6 +1,6 @@
 package com.enderio.base.common.integrations.jei;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.block.glass.GlassBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.enderio.base.common.init.EIOItems;
@@ -33,7 +33,7 @@ public class EnderIOJEI implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return EnderIOBase.loc("base");
+        return EnderIO.loc("base");
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.widget.ioconfig;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.io.IOConfigurable;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.core.client.gui.screen.BaseOverlay;
@@ -78,8 +78,8 @@ public class IOConfigOverlay extends BaseOverlay {
     private static final BlockPos POS = new BlockPos(1, 1, 1);
     private static final int Z_OFFSET = 100;
     private static final int OVERLAY_Z_OFFSET = 500;
-    private static final ResourceLocation IO_CONFIG_OVERLAY = EnderIOBase.loc("buttons/io_config_overlay");
-    private static final ResourceLocation SELECTED_ICON = EnderIOBase.loc("block/overlay/selected_face");
+    private static final ResourceLocation IO_CONFIG_OVERLAY = EnderIO.loc("buttons/io_config_overlay");
+    private static final ResourceLocation SELECTED_ICON = EnderIO.loc("block/overlay/selected_face");
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
     private static MultiBufferSource.BufferSource ghostBuffers;
     private static MultiBufferSource.BufferSource solidBuffers;
@@ -94,7 +94,7 @@ public class IOConfigOverlay extends BaseOverlay {
     private Optional<SelectedFace> selection = Optional.empty();
 
     // Neighbour Button
-    public static final ResourceLocation NEIGHBOURS_BTN = EnderIOBase.loc("buttons/neighbour");
+    public static final ResourceLocation NEIGHBOURS_BTN = EnderIO.loc("buttons/neighbour");
     private final Rect2i neighBtnRect;
 
     public IOConfigOverlay(int x, int y, int width, int height, List<BlockPos> _configurable) {
@@ -444,8 +444,8 @@ public class IOConfigOverlay extends BaseOverlay {
         if (selection.isPresent()) {
             var selectedFace = selection.get();
             BlockEntity entity = MINECRAFT.level.getBlockEntity(selectedFace.blockPos);
-            if (entity instanceof LegacyMachineBlockEntity machine) {
-                var ioMode = machine.getIOMode(selectedFace.side);
+            if (entity instanceof IOConfigurable ioConfigurable) {
+                var ioMode = ioConfigurable.getIOMode(selectedFace.side);
                 IOModeMap map = IOModeMap.getMapFromMode(ioMode);
                 Rect2i iconBounds = map.getRect();
                 guiGraphics.blitSprite(IO_CONFIG_OVERLAY, 48, 16, iconBounds.getX(), iconBounds.getY(), getX() + 4,
@@ -502,8 +502,8 @@ public class IOConfigOverlay extends BaseOverlay {
         private static final Map<RenderType, RenderType> REMAPPED_TYPES = new IdentityHashMap<>();
 
         private SolidRenderLayer(RenderType original) {
-            super(String.format("%s_%s_solid", original, EnderIOBase.REGISTRY_NAMESPACE), original.format(),
-                    original.mode(), original.bufferSize(), original.affectsCrumbling(), true, () -> {
+            super(String.format("%s_%s_solid", original, EnderIO.NAMESPACE), original.format(), original.mode(),
+                    original.bufferSize(), original.affectsCrumbling(), true, () -> {
                         original.setupRenderState();
 
                         RenderSystem.disableDepthTest();
@@ -527,8 +527,8 @@ public class IOConfigOverlay extends BaseOverlay {
         private static final Map<RenderType, RenderType> REMAPPED_TYPES = new IdentityHashMap<>();
 
         private GhostRenderLayer(RenderType original) {
-            super(String.format("%s_%s_ghost", original, EnderIOBase.REGISTRY_NAMESPACE), original.format(),
-                    original.mode(), original.bufferSize(), original.affectsCrumbling(), true, () -> {
+            super(String.format("%s_%s_ghost", original, EnderIO.NAMESPACE), original.format(), original.mode(),
+                    original.bufferSize(), original.affectsCrumbling(), true, () -> {
                         original.setupRenderState();
 
                         RenderSystem.disableDepthTest();

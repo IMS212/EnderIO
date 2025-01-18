@@ -1,6 +1,6 @@
 package com.enderio.machines.common.menu.base;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.machines.common.blockentity.base.LegacyPoweredMachineBlockEntity;
 import com.enderio.machines.common.io.energy.IMachineEnergyStorage;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Deprecated(forRemoval = true, since = "7.1")
 public class LegacyPoweredMachineMenu<T extends LegacyPoweredMachineBlockEntity> extends LegacyMachineMenu<T> {
-    protected static final ResourceLocation EMPTY_CAPACITOR_SLOT = EnderIOBase.loc("item/empty_capacitor_slot");
+    protected static final ResourceLocation EMPTY_CAPACITOR_SLOT = EnderIO.loc("item/empty_capacitor_slot");
 
     protected LegacyPoweredMachineMenu(@Nullable MenuType<?> menuType, int containerId, @Nullable T blockEntity,
             Inventory playerInventory) {

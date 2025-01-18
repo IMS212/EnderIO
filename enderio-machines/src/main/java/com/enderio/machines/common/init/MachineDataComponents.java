@@ -1,6 +1,6 @@
 package com.enderio.machines.common.init;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.grindingball.GrindingBallData;
 import com.enderio.base.api.misc.RedstoneControl;
 import com.enderio.machines.common.attachment.ActionRange;
@@ -18,7 +18,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class MachineDataComponents {
     private static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES = DeferredRegister
-            .create(Registries.DATA_COMPONENT_TYPE, EnderIOBase.REGISTRY_NAMESPACE);
+            .create(Registries.DATA_COMPONENT_TYPE, EnderIO.NAMESPACE);
 
     public static Supplier<DataComponentType<IOConfig>> IO_CONFIG = savedAndSynced("io_config", IOConfig.CODEC,
             IOConfig.STREAM_CODEC);

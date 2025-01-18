@@ -9,8 +9,8 @@ import com.enderio.base.common.block.EIOBlockEntity;
 import com.enderio.base.common.blockentity.Wrenchable;
 import com.enderio.machines.common.MachineNBTKeys;
 import com.enderio.machines.common.block.LegacyMachineBlock;
-import com.enderio.machines.common.block.LegacyProgressMachineBlock;
 import com.enderio.machines.common.blockentity.base.LegacyMachineBlockEntity;
+import com.enderio.machines.common.blocks.base.block.ProgressMachineBlock;
 import com.enderio.machines.common.blocks.base.inventory.MachineInventory;
 import com.enderio.machines.common.blocks.base.inventory.MachineInventoryLayout;
 import com.enderio.machines.common.blocks.base.state.MachineState;
@@ -97,7 +97,7 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
             inventory = null;
         }
 
-        this.supportsActiveState = blockState.hasProperty(LegacyProgressMachineBlock.POWERED);
+        this.supportsActiveState = blockState.hasProperty(ProgressMachineBlock.POWERED);
     }
 
     /**
@@ -118,12 +118,12 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
         if (canAct(5)) {
             boolean isActive = isActive();
             boolean needBlockStateUpdate = supportsActiveState
-                    && getBlockState().getValue(LegacyProgressMachineBlock.POWERED) != isActive;
+                    && getBlockState().getValue(ProgressMachineBlock.POWERED) != isActive;
             boolean needStateUpdate = states.contains(MachineState.ACTIVE) != isActive;
 
             if (needBlockStateUpdate) {
                 level.setBlockAndUpdate(worldPosition,
-                        getBlockState().setValue(LegacyProgressMachineBlock.POWERED, isActive));
+                        getBlockState().setValue(ProgressMachineBlock.POWERED, isActive));
             }
 
             if (needStateUpdate) {
@@ -340,13 +340,13 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
     }
 
     private void distributeItems(Direction side) {
-        IFluidHandler selfHandler = getSelfCapability(Capabilities.FluidHandler.BLOCK, side);
-        IFluidHandler otherHandler = getNeighbouringCapability(Capabilities.FluidHandler.BLOCK, side);
+        IItemHandler selfHandler = getSelfCapability(Capabilities.ItemHandler.BLOCK, side);
+        IItemHandler otherHandler = getNeighbouringCapability(Capabilities.ItemHandler.BLOCK, side);
         if (selfHandler == null || otherHandler == null) {
             return;
         }
 
-        TransferUtil.distributeFluids(getIOMode(side), selfHandler, otherHandler);
+        TransferUtil.distributeItems(getIOMode(side), selfHandler, otherHandler);
     }
 
     private void distributeFluids(Direction side) {
@@ -391,6 +391,7 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
         }
 
         states.add(state);
+        level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
 
     @UseOnly(LogicalSide.SERVER)
@@ -400,6 +401,7 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
         }
 
         states.remove(state);
+        level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
 
     // endregion
@@ -447,7 +449,7 @@ public abstract class MachineBlockEntity extends EIOBlockEntity
     private void checkIsRedstoneBlocked() {
         if (supportsRedstoneControl()) {
             isRedstoneBlocked = !redstoneControl.isActive(isRedstonePowered());
-            updateMachineState(MachineState.REDSTONE, !isRedstoneBlocked);
+            updateMachineState(MachineState.REDSTONE, isRedstoneBlocked);
         }
     }
 

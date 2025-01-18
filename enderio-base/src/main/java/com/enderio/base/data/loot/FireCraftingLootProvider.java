@@ -1,6 +1,6 @@
 package com.enderio.base.data.loot;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -19,8 +19,8 @@ import java.util.function.BiConsumer;
 public class FireCraftingLootProvider implements LootTableSubProvider {
     private final HolderLookup.Provider registries;
 
-    public static ResourceKey<LootTable> BEDROCK_CRAFTING = ResourceKey.create(Registries.LOOT_TABLE, EnderIOBase.loc("fire_crafting/bedrock_infinity"));
-    public static ResourceKey<LootTable> DEEPSLATE_CRAFTING = ResourceKey.create(Registries.LOOT_TABLE, EnderIOBase.loc("fire_crafting/deepslate_infinity"));
+    public static ResourceKey<LootTable> BEDROCK_CRAFTING = ResourceKey.create(Registries.LOOT_TABLE, EnderIO.loc("fire_crafting/bedrock_infinity"));
+    public static ResourceKey<LootTable> DEEPSLATE_CRAFTING = ResourceKey.create(Registries.LOOT_TABLE, EnderIO.loc("fire_crafting/deepslate_infinity"));
 
     public FireCraftingLootProvider(HolderLookup.Provider registries) {
         this.registries = registries;

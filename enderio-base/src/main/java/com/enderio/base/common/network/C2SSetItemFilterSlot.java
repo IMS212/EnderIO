@@ -1,6 +1,6 @@
 package com.enderio.base.common.network;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 public record C2SSetItemFilterSlot(int containerId, int slotIndex, ItemStack itemStack) implements CustomPacketPayload {
 
     public static CustomPacketPayload.Type<C2SSetItemFilterSlot> TYPE = new CustomPacketPayload.Type<>(
-            EnderIOBase.loc("set_item_filter_slot"));
+        EnderIO.loc("set_item_filter_slot"));
 
     public static StreamCodec<RegistryFriendlyByteBuf, C2SSetItemFilterSlot> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT, C2SSetItemFilterSlot::containerId, ByteBufCodecs.INT, C2SSetItemFilterSlot::slotIndex,

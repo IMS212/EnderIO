@@ -1,6 +1,6 @@
 package com.enderio.conduits.client.gui.conduit;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.ConduitDataAccessor;
 import com.enderio.conduits.api.screen.ConduitScreenExtension;
 import com.enderio.base.common.lang.EIOLang;
@@ -18,10 +18,10 @@ import java.util.function.Supplier;
 
 public class ItemConduitScreenExtension implements ConduitScreenExtension {
 
-    private static final ResourceLocation ICON_ROUND_ROBIN_ENABLED = EnderIOBase.loc("icon/round_robin_enabled");
-    private static final ResourceLocation ICON_ROUND_ROBIN_DISABLED = EnderIOBase.loc("icon/round_robin_disabled");
-    private static final ResourceLocation ICON_SELF_FEED_ENABLED = EnderIOBase.loc("icon/self_feed_enabled");
-    private static final ResourceLocation ICON_SELF_FEED_DISABLED = EnderIOBase.loc("icon/self_feed_disabled");
+    private static final ResourceLocation ICON_ROUND_ROBIN_ENABLED = EnderIO.loc("icon/round_robin_enabled");
+    private static final ResourceLocation ICON_ROUND_ROBIN_DISABLED = EnderIO.loc("icon/round_robin_disabled");
+    private static final ResourceLocation ICON_SELF_FEED_ENABLED = EnderIO.loc("icon/self_feed_enabled");
+    private static final ResourceLocation ICON_SELF_FEED_DISABLED = EnderIO.loc("icon/self_feed_disabled");
 
     @Override
     public List<AbstractWidget> createWidgets(Screen screen, ConduitDataAccessor conduitDataAccessor, UpdateDispatcher updateConduitData,

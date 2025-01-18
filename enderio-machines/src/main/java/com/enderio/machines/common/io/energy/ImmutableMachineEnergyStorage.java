@@ -8,6 +8,7 @@ import org.apache.commons.lang3.NotImplementedException;
  * An immutable machine energy storage.
  * Used for client side syncing.
  */
+@Deprecated(forRemoval = true, since = "7.1")
 public class ImmutableMachineEnergyStorage implements IMachineEnergyStorage {
     /**
      * A default value, storing no energy.

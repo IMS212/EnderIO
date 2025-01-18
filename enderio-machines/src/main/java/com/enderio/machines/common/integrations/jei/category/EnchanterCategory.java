@@ -1,6 +1,6 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.machines.client.gui.screen.EnchanterScreen;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.enderio.machines.common.integrations.jei.util.MachineRecipeCategory;
@@ -28,7 +28,8 @@ import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
 
 public class EnchanterCategory extends MachineRecipeCategory<WrappedEnchanterRecipe> {
 
-    public static final RecipeType<WrappedEnchanterRecipe> TYPE = RecipeType.create(EnderIOBase.REGISTRY_NAMESPACE, "enchanter", WrappedEnchanterRecipe.class);
+    public static final RecipeType<WrappedEnchanterRecipe> TYPE = RecipeType.create(EnderIO.NAMESPACE, "enchanter",
+            WrappedEnchanterRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -65,20 +66,17 @@ public class EnchanterCategory extends MachineRecipeCategory<WrappedEnchanterRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, WrappedEnchanterRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(INPUT, 1, 11)
-            .addItemStack(new ItemStack(Items.WRITABLE_BOOK));
+        builder.addSlot(INPUT, 1, 11).addItemStack(new ItemStack(Items.WRITABLE_BOOK));
 
-        builder.addSlot(INPUT, 50, 11)
-            .addItemStacks(recipe.getInputs());
-        builder.addSlot(INPUT, 70, 11)
-            .addItemStacks(recipe.getLapis());
+        builder.addSlot(INPUT, 50, 11).addItemStacks(recipe.getInputs());
+        builder.addSlot(INPUT, 70, 11).addItemStacks(recipe.getLapis());
 
-        builder.addSlot(OUTPUT, 129, 11)
-            .addItemStack(recipe.getBook());
+        builder.addSlot(OUTPUT, 129, 11).addItemStack(recipe.getBook());
     }
 
     @Override
-    public void draw(WrappedEnchanterRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(WrappedEnchanterRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics,
+            double mouseX, double mouseY) {
         Minecraft mc = Minecraft.getInstance();
 
         Component title = Enchantment.getFullname(recipe.getEnchantment(), recipe.getLevel());
@@ -95,6 +93,7 @@ public class EnchanterCategory extends MachineRecipeCategory<WrappedEnchanterRec
         // Show red if the player doesn't have enough levels
         int mainColor = playerHasEnoughLevels(player, cost) ? 0xFF80FF20 : 0xFFFF6060;
         int repairTextWidth = minecraft.font.width(text);
-        guiGraphics.drawString(minecraft.font, text, background.getWidth() - 2 - repairTextWidth, background.getHeight() - 8, mainColor);
+        guiGraphics.drawString(minecraft.font, text, background.getWidth() - 2 - repairTextWidth,
+                background.getHeight() - 8, mainColor);
     }
 }

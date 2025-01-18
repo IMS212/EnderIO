@@ -1,6 +1,6 @@
 package com.enderio.conduits.client.model.conduit.modifier;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.Conduit;
 import com.enderio.conduits.api.ConduitNode;
 import com.enderio.conduits.api.model.ConduitCoreModelModifier;
@@ -29,7 +29,7 @@ import java.util.List;
 
 public class FluidConduitCoreModelModifier implements ConduitCoreModelModifier {
 
-    private static final ModelResourceLocation FLUID_MODEL = ModelResourceLocation.standalone(EnderIOBase.loc("block/extra/fluids"));
+    private static final ModelResourceLocation FLUID_MODEL = ModelResourceLocation.standalone(EnderIO.loc("block/extra/fluids"));
 
     @Override
     public List<BakedQuad> createConnectionQuads(Holder<Conduit<?>> conduit, ConduitNode node, @Nullable Direction facing, Direction connectionDirection, RandomSource rand,

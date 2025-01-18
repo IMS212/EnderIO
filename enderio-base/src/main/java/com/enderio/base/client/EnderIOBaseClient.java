@@ -1,6 +1,7 @@
 package com.enderio.base.client;
 
 import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.decorator.GlassIconDecorator;
 import com.enderio.base.client.paint.model.PaintedBlockGeometry;
 import com.enderio.base.client.particle.RangeParticle;
@@ -121,7 +122,7 @@ public class EnderIOBaseClient {
 
     @SubscribeEvent
     public static void modelInit(ModelEvent.RegisterGeometryLoaders event) {
-        event.register(EnderIOBase.loc("painted_block"), new PaintedBlockGeometry.Loader());
+        event.register(EnderIO.loc("painted_block"), new PaintedBlockGeometry.Loader());
     }
 
     @SubscribeEvent

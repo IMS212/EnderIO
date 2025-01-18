@@ -1,21 +1,20 @@
 package com.enderio.base.data.tags;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.base.common.tag.EIOTags;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.CompletableFuture;
-
 public class EIOFluidTagsProvider extends FluidTagsProvider {
 
     public EIOFluidTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pProvider,
-        @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pProvider, EnderIOBase.REGISTRY_NAMESPACE, existingFileHelper);
+            @Nullable ExistingFileHelper existingFileHelper) {
+        super(pOutput, pProvider, EnderIO.NAMESPACE, existingFileHelper);
     }
 
     @Override

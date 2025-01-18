@@ -1,6 +1,6 @@
 package com.enderio.base.common.paint;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOCriterions;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class PaintingTrigger extends SimpleCriterionTrigger<PaintingTrigger.TriggerInstance> {
 
-    static final ResourceLocation ID = EnderIOBase.loc("create_painted_block");
+    static final ResourceLocation ID = EnderIO.loc("create_painted_block");
     public ResourceLocation getId() {
         return ID;
     }

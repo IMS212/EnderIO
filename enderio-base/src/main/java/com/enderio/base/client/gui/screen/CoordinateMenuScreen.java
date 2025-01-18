@@ -1,6 +1,6 @@
 package com.enderio.base.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.base.common.menu.CoordinateMenu;
 import com.enderio.base.common.network.UpdateCoordinateSelectionNameMenuPacket;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 public class CoordinateMenuScreen extends EnderContainerScreen<CoordinateMenu> {
 
-    private static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/40/location_printout.png");
+    private static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/40/location_printout.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 116;
 

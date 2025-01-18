@@ -1,6 +1,6 @@
 package com.enderio.conduits.client.gui;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.conduits.common.menu.RedstoneTimerFilterMenu;
 import com.enderio.core.client.gui.screen.EIOScreen;
@@ -14,7 +14,7 @@ import org.joml.Vector2i;
 public class RedstoneTimerFilterScreen extends EIOScreen<RedstoneTimerFilterMenu> {
 
     private static final Vector2i BG_SIZE = new Vector2i(183,201);
-    private static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/40/item_filter.png");
+    private static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/40/item_filter.png");
 
     public RedstoneTimerFilterScreen(RedstoneTimerFilterMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);

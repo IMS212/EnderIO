@@ -1,6 +1,6 @@
 package com.enderio.base.data.model.block;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.block.light.PoweredLight;
 import com.enderio.regilite.data.DataGenContext;
 import net.minecraft.core.Direction;
@@ -48,8 +48,8 @@ public class EIOBlockState {
             AttachFace face = state.getValue(PoweredLight.FACE);
             boolean powered = state.getValue(PoweredLight.ENABLED);
 
-            ModelFile light = prov.models().withExistingParent(ctx.getName(), EnderIOBase.loc("block/lightblock"));
-            ModelFile light_powered = prov.models().withExistingParent(ctx.getName() + "_powered", EnderIOBase.loc("block/lightblock"));
+            ModelFile light = prov.models().withExistingParent(ctx.getName(), EnderIO.loc("block/lightblock"));
+            ModelFile light_powered = prov.models().withExistingParent(ctx.getName() + "_powered", EnderIO.loc("block/lightblock"));
             return ConfiguredModel.builder()
                 .modelFile(powered ? light : light_powered)
                 .rotationX(face == AttachFace.FLOOR ? 0 : (face == AttachFace.WALL ? 90 : 180))

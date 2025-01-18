@@ -1,6 +1,6 @@
 package com.enderio.machines.client.gui.screen;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.client.gui.widget.EIOCommonWidgets;
 import com.enderio.base.client.gui.widget.RedstoneControlPickerWidget;
 import com.enderio.base.common.lang.EIOLang;
@@ -16,12 +16,12 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class VacuumChestScreen extends MachineScreen<VacuumChestMenu> {
 
-    private static final ResourceLocation VACUUM_CHEST_BG = EnderIOBase.loc("textures/gui/screen/vacuum_chest.png");
+    private static final ResourceLocation VACUUM_CHEST_BG = EnderIO.loc("textures/gui/screen/vacuum_chest.png");
     private static final int WIDTH = 176;
     private static final int HEIGHT = 206;
 
-    private static final ResourceLocation PLUS = EnderIOBase.loc("buttons/plus_small");
-    private static final ResourceLocation MINUS = EnderIOBase.loc("buttons/minus_small");
+    private static final ResourceLocation PLUS = EnderIO.loc("buttons/plus_small");
+    private static final ResourceLocation MINUS = EnderIO.loc("buttons/minus_small");
     private static final WidgetSprites PLUS_SPRITES = new WidgetSprites(PLUS, PLUS);
     private static final WidgetSprites MINUS_SPRITES = new WidgetSprites(MINUS, MINUS);
 

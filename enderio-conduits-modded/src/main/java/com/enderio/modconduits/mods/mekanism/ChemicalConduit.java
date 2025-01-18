@@ -89,7 +89,7 @@ public record ChemicalConduit(
         var selfData = selfNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
         var otherData = otherNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
 
-        return selfData.lockedChemical.isEmpty() || otherData.lockedChemical.isEmpty() || selfData.lockedChemical.equals(otherData.lockedChemical);
+        return selfData.lockedChemical().isEmpty() || otherData.lockedChemical().isEmpty() || selfData.lockedChemical().equals(otherData.lockedChemical());
     }
 
     @Override
@@ -97,13 +97,13 @@ public record ChemicalConduit(
         var selfData = selfNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
         var otherData = otherNode.getOrCreateData(MekanismModule.CHEMICAL_DATA_TYPE.get());
 
-        if (!selfData.lockedChemical.isEmpty()) {
+        if (!selfData.lockedChemical().isEmpty()) {
 //            if (!otherData.lockedChemical.isEmpty() && !selfData.lockedChemical.equals(otherData.lockedChemical)) {
 //                //EnderIO.LOGGER.warn("incompatible chemical conduits merged");
 //            }
-            otherData.setlockedChemical(selfData.lockedChemical);
-        } else if (!otherData.lockedChemical.isEmpty()) {
-            selfData.setlockedChemical(otherData.lockedChemical);
+            otherData.setLockedChemical(selfData.lockedChemical());
+        } else if (!otherData.lockedChemical().isEmpty()) {
+            selfData.setLockedChemical(otherData.lockedChemical());
         }
     }
 

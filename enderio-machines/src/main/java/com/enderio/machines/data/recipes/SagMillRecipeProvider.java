@@ -79,7 +79,7 @@ import static net.minecraft.world.item.Items.WITHER_ROSE;
 import static net.minecraft.world.item.Items.WITHER_SKELETON_SKULL;
 import static net.minecraft.world.item.Items.YELLOW_DYE;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.base.common.tag.EIOTags;
 import com.enderio.machines.common.blocks.sag_mill.SagMillingRecipe;
@@ -355,12 +355,12 @@ public class SagMillRecipeProvider extends RecipeProvider {
 
     protected void build(String name, Ingredient input, List<SagMillingRecipe.OutputItem> outputs, int energy,
             RecipeOutput recipeOutput) {
-        build(EnderIOBase.loc("sag_milling/" + name), input, outputs, energy, BonusType.MULTIPLY_OUTPUT, recipeOutput);
+        build(EnderIO.loc("sag_milling/" + name), input, outputs, energy, BonusType.MULTIPLY_OUTPUT, recipeOutput);
     }
 
     protected void build(String name, Ingredient input, List<SagMillingRecipe.OutputItem> outputs, int energy,
             BonusType bonusType, RecipeOutput recipeOutput) {
-        build(EnderIOBase.loc("sag_milling/" + name), input, outputs, energy, bonusType, recipeOutput);
+        build(EnderIO.loc("sag_milling/" + name), input, outputs, energy, bonusType, recipeOutput);
     }
 
     protected void build(ResourceLocation id, Ingredient input, List<SagMillingRecipe.OutputItem> outputs, int energy,

@@ -15,8 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import java.util.List;
-
 public class FluidFilterMenu extends AbstractContainerMenu {
 
     private final ItemStack stack;
@@ -35,9 +33,10 @@ public class FluidFilterMenu extends AbstractContainerMenu {
 
         for (int i = 0; i < capability.size(); i++) {
             int pSlot = i;
-            addSlot(new FluidFilterSlot(fluidStack -> capability.setEntry(pSlot, fluidStack) ,i ,14 + ( i % 5) * 18, 35 + 20 * ( i / 5)));
+            addSlot(new FluidFilterSlot(fluidStack -> capability.setEntry(pSlot, fluidStack), i, 14 + (i % 5) * 18,
+                    35 + 20 * (i / 5)));
         }
-        addInventorySlots(14,119, inventory);
+        addInventorySlots(14, 119, inventory);
     }
 
     public FluidFilterMenu(int pContainerId, Inventory inventory, ItemStack stack) {
@@ -45,7 +44,8 @@ public class FluidFilterMenu extends AbstractContainerMenu {
     }
 
     public static FluidFilterMenu factory(int pContainerId, Inventory inventory, FriendlyByteBuf buf) {
-        return new FluidFilterMenu(EIOMenus.FLUID_FILTER.get(), pContainerId, inventory, inventory.player.getMainHandItem());
+        return new FluidFilterMenu(EIOMenus.FLUID_FILTER.get(), pContainerId, inventory,
+                inventory.player.getMainHandItem());
     }
 
     @Override
@@ -62,14 +62,26 @@ public class FluidFilterMenu extends AbstractContainerMenu {
 
         // Hotbar
         for (int x = 0; x < 9; x++) {
-            Slot ref = new Slot(inventory, x, xPos + x * 18, yPos + 58);
+            Slot ref = new Slot(inventory, x, xPos + x * 18, yPos + 58) {
+
+                @Override
+                public boolean mayPickup(Player player) {
+                    return !this.getItem().equals(FluidFilterMenu.this.stack);
+                }
+            };
             this.addSlot(ref);
         }
 
         // Inventory
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 9; x++) {
-                Slot ref = new Slot(inventory, x + y * 9 + 9, xPos + x * 18, yPos + y * 18);
+                Slot ref = new Slot(inventory, x + y * 9 + 9, xPos + x * 18, yPos + y * 18) {
+
+                    @Override
+                    public boolean mayPickup(Player player) {
+                        return !this.getItem().equals(FluidFilterMenu.this.stack);
+                    }
+                };
                 this.addSlot(ref);
             }
         }

@@ -1,6 +1,6 @@
 package com.enderio.conduits.client.gui.conduit;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.api.ConduitDataAccessor;
 import com.enderio.conduits.api.screen.ConduitScreenExtension;
 import com.enderio.base.common.lang.EIOLang;
@@ -32,7 +32,7 @@ import java.util.function.Supplier;
 
 public final class FluidConduitScreenExtension implements ConduitScreenExtension {
 
-    private static final ResourceLocation WIDGET_TEXTURE = EnderIOBase.loc("textures/gui/fluidbackground.png");
+    private static final ResourceLocation WIDGET_TEXTURE = EnderIO.loc("textures/gui/fluidbackground.png");
 
     @Override
     public List<AbstractWidget> createWidgets(Screen screen, ConduitDataAccessor conduitDataAccessor, UpdateDispatcher updateConduitData,
@@ -70,7 +70,7 @@ public final class FluidConduitScreenExtension implements ConduitScreenExtension
             if (isHoveredOrFocused()) {
                 MutableComponent tooltip = EIOLang.FLUID_CONDUIT_CHANGE_FLUID1.copy();
                 tooltip.append("\n").append(EIOLang.FLUID_CONDUIT_CHANGE_FLUID2);
-                if (currentFluid.get() != null) {
+                if (!currentFluid.get().isSame(Fluids.EMPTY)) {
                     tooltip.append("\n").append(TooltipUtil.withArgs(EIOLang.FLUID_CONDUIT_CHANGE_FLUID3, currentFluid.get().getFluidType().getDescription()));
                 }
                 setTooltip(Tooltip.create(TooltipUtil.style(tooltip)));
@@ -80,7 +80,7 @@ public final class FluidConduitScreenExtension implements ConduitScreenExtension
             RenderSystem.defaultBlendFunc();
             RenderSystem.enableDepthTest();
             guiGraphics.blit(WIDGET_TEXTURE, getX(), getY(), 0, 0, this.width, this.height);
-            if (currentFluid.get() == null) {
+            if (currentFluid.get().isSame(Fluids.EMPTY)) {
                 return;
             }
 

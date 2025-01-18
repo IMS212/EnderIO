@@ -1,6 +1,6 @@
 package com.enderio.base.data.recipe;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.recipe.FireCraftingRecipe;
 import com.enderio.base.data.loot.FireCraftingLootProvider;
 import net.minecraft.core.HolderLookup;
@@ -23,7 +23,7 @@ public class FireCraftingRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        recipeOutput.accept(EnderIOBase.loc("fire_crafting/bedrock_infinity"),
+        recipeOutput.accept(EnderIO.loc("fire_crafting/bedrock_infinity"),
             new FireCraftingRecipe(
                 FireCraftingLootProvider.BEDROCK_CRAFTING,
                 3,
@@ -33,7 +33,7 @@ public class FireCraftingRecipeProvider extends RecipeProvider {
                 Optional.empty()),
             null);
 
-        recipeOutput.accept(EnderIOBase.loc("fire_crafting/deepslate_infinity"),
+        recipeOutput.accept(EnderIO.loc("fire_crafting/deepslate_infinity"),
             new FireCraftingRecipe(
                 FireCraftingLootProvider.DEEPSLATE_CRAFTING,
                 1,

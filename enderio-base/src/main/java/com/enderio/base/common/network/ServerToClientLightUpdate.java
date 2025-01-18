@@ -1,6 +1,6 @@
 package com.enderio.base.common.network;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public record ServerToClientLightUpdate(BlockPos pos, BlockState state) implements CustomPacketPayload {
 
-    public static Type<ServerToClientLightUpdate> TYPE = new Type<>(EnderIOBase.loc("light_update"));
+    public static Type<ServerToClientLightUpdate> TYPE = new Type<>(EnderIO.loc("light_update"));
 
     public static StreamCodec<ByteBuf, ServerToClientLightUpdate> STREAM_CODEC = StreamCodec.composite(
         BlockPos.STREAM_CODEC,

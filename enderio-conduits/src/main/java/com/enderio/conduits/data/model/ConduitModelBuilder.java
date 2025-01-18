@@ -1,6 +1,6 @@
 package com.enderio.conduits.data.model;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import net.neoforged.neoforge.client.model.generators.CustomLoaderBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -12,6 +12,6 @@ public class ConduitModelBuilder<T extends ModelBuilder<T>> extends CustomLoader
     }
 
     protected ConduitModelBuilder(T parent, ExistingFileHelper existingFileHelper) {
-        super(EnderIOBase.loc("conduit"), parent, existingFileHelper, false);
+        super(EnderIO.loc("conduit"), parent, existingFileHelper, false);
     }
 }

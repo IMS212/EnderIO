@@ -1,6 +1,6 @@
 package com.enderio.machines.data.recipes;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.block.glass.FusedQuartzBlock;
 import com.enderio.base.common.block.glass.GlassBlocks;
 import com.enderio.base.common.block.glass.GlassCollisionPredicate;
@@ -65,7 +65,7 @@ public class AlloyRecipeProvider extends RecipeProvider {
         build(new ItemStack(EIOItems.PULSATING_ALLOY_INGOT.get()),
                 List.of(SizedIngredient.of(Tags.Items.INGOTS_IRON, 1), SizedIngredient.of(Tags.Items.ENDER_PEARLS, 1)),
                 4800, 0.3f, recipeOutput);
-        build(EnderIOBase.loc("dark_steel_ingot_with_coal"),
+        build(EnderIO.loc("dark_steel_ingot_with_coal"),
                 List.of(SizedIngredient.of(Tags.Items.INGOTS_IRON, 1), SizedIngredient.of(Items.COAL, 2),
                         SizedIngredient.of(Tags.Items.OBSIDIANS, 1)),
                 new ItemStack(EIOItems.DARK_STEEL_INGOT.get()), 6400, 0.3f, recipeOutput);
@@ -212,13 +212,13 @@ public class AlloyRecipeProvider extends RecipeProvider {
 
     protected void build(ItemStack output, List<SizedIngredient> inputs, int energy, float experience,
             RecipeOutput recipeOutput) {
-        build(EnderIOBase.loc("alloy_smelting/" + BuiltInRegistries.ITEM.getKey(output.getItem()).getPath()), inputs,
+        build(EnderIO.loc("alloy_smelting/" + BuiltInRegistries.ITEM.getKey(output.getItem()).getPath()), inputs,
                 output, energy, experience, recipeOutput);
     }
 
     protected void build(ItemStack output, String suffix, List<SizedIngredient> inputs, int energy, float experience,
             RecipeOutput recipeOutput) {
-        build(EnderIOBase
+        build(EnderIO
                 .loc("alloy_smelting/" + BuiltInRegistries.ITEM.getKey(output.getItem()).getPath() + "_" + suffix),
                 inputs, output, energy, experience, recipeOutput);
     }

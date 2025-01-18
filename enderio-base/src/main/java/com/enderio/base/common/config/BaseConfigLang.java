@@ -1,8 +1,6 @@
 package com.enderio.base.common.config;
 
 import com.enderio.EnderIOBase;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 
 public class BaseConfigLang {
     public static void register() {

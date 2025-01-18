@@ -10,7 +10,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 
-import java.util.Optional;
+import java.util.Objects;
 
 public class ChemicalConduitData implements ConduitData<ChemicalConduitData> {
 
@@ -18,28 +18,44 @@ public class ChemicalConduitData implements ConduitData<ChemicalConduitData> {
         instance -> instance.group(
             Codec.BOOL.fieldOf("should_reset").forGetter(i -> i.shouldReset),
             ChemicalStack.OPTIONAL_CODEC
-                .optionalFieldOf("locked_fluid")
-                .forGetter(i -> Optional.of(i.lockedChemical))
+                .optionalFieldOf("locked_fluid", ChemicalStack.EMPTY)
+                .forGetter(i -> i.lockedChemical)
         ).apply(instance, ChemicalConduitData::new)
     );
 
     public static StreamCodec<RegistryFriendlyByteBuf, ChemicalConduitData> STREAM_CODEC = StreamCodec.composite(
         ByteBufCodecs.BOOL,
         i -> i.shouldReset,
-        ByteBufCodecs.optional(ChemicalStack.OPTIONAL_STREAM_CODEC),
-        i -> Optional.of(i.lockedChemical),
+        ChemicalStack.OPTIONAL_STREAM_CODEC,
+        i -> i.lockedChemical,
         ChemicalConduitData::new
     );
 
-    ChemicalStack lockedChemical = ChemicalStack.EMPTY;
-    boolean shouldReset = false;
+    private ChemicalStack lockedChemical = ChemicalStack.EMPTY;
+    private boolean shouldReset = false;
 
     public ChemicalConduitData() {
     }
 
-    public ChemicalConduitData(boolean shouldReset, Optional<ChemicalStack> lockedChemical) {
+    public ChemicalConduitData(boolean shouldReset, ChemicalStack lockedChemical) {
         this.shouldReset = shouldReset;
-        this.lockedChemical = lockedChemical.orElse(ChemicalStack.EMPTY);
+        this.lockedChemical = lockedChemical;
+    }
+
+    public boolean shouldReset() {
+        return shouldReset;
+    }
+
+    public void setShouldReset(boolean shouldReset) {
+        this.shouldReset = shouldReset;
+    }
+
+    public ChemicalStack lockedChemical() {
+        return lockedChemical;
+    }
+
+    public void setLockedChemical(ChemicalStack lockedChemical) {
+        this.lockedChemical = lockedChemical;
     }
 
     @Override
@@ -49,15 +65,20 @@ public class ChemicalConduitData implements ConduitData<ChemicalConduitData> {
 
     @Override
     public ChemicalConduitData withClientChanges(ChemicalConduitData guiData) {
-        return new ChemicalConduitData(guiData.shouldReset, Optional.ofNullable(lockedChemical));
+        this.shouldReset = guiData.shouldReset;
+
+        // TODO: Soon we will swap to records which will mean this will be a new instance.
+        //       This API has been designed with this pending change in mind.
+        return this;
     }
 
     @Override
     public ChemicalConduitData deepCopy() {
-        return new ChemicalConduitData(shouldReset, Optional.ofNullable(lockedChemical));
+        return new ChemicalConduitData(shouldReset, lockedChemical);
     }
 
-    public void setlockedChemical(ChemicalStack lockedChemical) {
-        this.lockedChemical = lockedChemical;
+    @Override
+    public int hashCode() {
+        return Objects.hash(shouldReset, lockedChemical);
     }
 }

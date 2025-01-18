@@ -1,14 +1,17 @@
 package com.enderio.base.common.integrations.jei.category;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.init.EIOFluids;
 import com.enderio.base.common.init.EIOItems;
-import com.enderio.base.common.integrations.jei.EnderIOJEI;
 import com.enderio.base.common.integrations.jei.JEIUtils;
 import com.enderio.base.common.lang.EIOLang;
 import com.enderio.base.common.recipe.FireCraftingRecipe;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.math.Axis;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.gui.builder.IIngredientAcceptor;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -40,24 +43,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author TagnumElite
  */
 public class FireCraftingCategory implements IRecipeCategory<RecipeHolder<FireCraftingRecipe>> {
 
-    public static final RecipeType<RecipeHolder<FireCraftingRecipe>> TYPE = JEIUtils.createRecipeType(EnderIOBase.REGISTRY_NAMESPACE, "fire_crafting",
-        FireCraftingRecipe.class);
+    public static final RecipeType<RecipeHolder<FireCraftingRecipe>> TYPE = JEIUtils.createRecipeType(EnderIO.NAMESPACE,
+            "fire_crafting", FireCraftingRecipe.class);
 
-    private static final ResourceLocation BG_LOCATION = EnderIOBase.loc("textures/gui/jei_infinity.png");
+    private static final ResourceLocation BG_LOCATION = EnderIO.loc("textures/gui/jei_infinity.png");
 
     private final IDrawable background;
     private final IDrawable icon;
@@ -94,7 +91,8 @@ public class FireCraftingCategory implements IRecipeCategory<RecipeHolder<FireCr
     }
 
     @Override
-    public List<Component> getTooltipStrings(RecipeHolder<FireCraftingRecipe> recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public List<Component> getTooltipStrings(RecipeHolder<FireCraftingRecipe> recipe, IRecipeSlotsView recipeSlotsView,
+            double mouseX, double mouseY) {
         // Middle Right, above the tooltip icon
         if (mouseX >= 87 && mouseX <= 105 && mouseY >= 25 && mouseY <= 38) {
             List<ResourceKey<Level>> validDimensions = recipe.value().dimensions();
@@ -129,23 +127,28 @@ public class FireCraftingCategory implements IRecipeCategory<RecipeHolder<FireCr
         block.addIngredients(Ingredient.of(recipe.value().getAllBaseBlocks().toArray(Block[]::new)));
 
         // TODO: Get and display chance
-        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 39).addTooltipCallback((slowView, tooltip) -> {
-            Component lootTableComponent = MutableComponent.create(EIOLang.JEI_FIRE_CRAFTING_LOOT_TABLE.getContents())
-                .append(Component.literal(" " + recipe.value().lootTable().location()));
-            Component maxDropsComponent = MutableComponent.create(EIOLang.JEI_FIRE_CRAFTING_MAX_DROPS.getContents())
-                .append(Component.literal(" " + recipe.value().maxItemDrops()));
-            tooltip.clear();
-            tooltip.add(lootTableComponent);
-            tooltip.add(maxDropsComponent);
-        });
-        output.addItemStack(new ItemStack(EIOItems.GRAINS_OF_INFINITY.get())); // TODO: Fetch the output from the loot table instead...
+        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 88, 39)
+                .addTooltipCallback((slowView, tooltip) -> {
+                    Component lootTableComponent = MutableComponent
+                            .create(EIOLang.JEI_FIRE_CRAFTING_LOOT_TABLE.getContents())
+                            .append(Component.literal(" " + recipe.value().lootTable().location()));
+                    Component maxDropsComponent = MutableComponent
+                            .create(EIOLang.JEI_FIRE_CRAFTING_MAX_DROPS.getContents())
+                            .append(Component.literal(" " + recipe.value().maxItemDrops()));
+                    tooltip.clear();
+                    tooltip.add(lootTableComponent);
+                    tooltip.add(maxDropsComponent);
+                });
+        output.addItemStack(new ItemStack(EIOItems.GRAINS_OF_INFINITY.get())); // TODO: Fetch the output from the loot
+                                                                               // table instead...
 
         IRecipeSlotBuilder catalyst = builder.addSlot(RecipeIngredientRole.CATALYST, 88, 8).setSlotName("catalyst");
         catalyst.addIngredients(Ingredient.of(Items.FLINT_AND_STEEL, EIOFluids.FIRE_WATER.getBucket()));
     }
 
     @Override
-    public void draw(RecipeHolder<FireCraftingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(RecipeHolder<FireCraftingRecipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics,
+            double mouseX, double mouseY) {
         if (!Screen.hasShiftDown() && timer.getValue() != changed) {
 //            EnderIO.LOGGER.debug("Block {} IDX: {}, ({} - {}) {}", recipe.getId(), blockIdx.get(recipe.getId()), timer.getValue(), changed, blockIdx);
 //            blockIdx.put(recipe.getId(), blockIdx.get(recipe.getId()) + 1);
@@ -198,11 +201,15 @@ public class FireCraftingCategory implements IRecipeCategory<RecipeHolder<FireCr
         guiGraphics.pose().translate(0, 0.5, 0);
         guiGraphics.pose().scale(1f, -1f, 1f);
 
-        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, guiGraphics.pose(), buffers, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+        Minecraft.getInstance()
+                .getBlockRenderer()
+                .renderSingleBlock(state, guiGraphics.pose(), buffers, LightTexture.FULL_BRIGHT,
+                        OverlayTexture.NO_OVERLAY);
 
         guiGraphics.pose().popPose();
         // TODO: Fire Water has no block. I think this is a registrate bug?
-        BlockState fireState = !alternateFire ? Blocks.FIRE.defaultBlockState() : EIOFluids.FIRE_WATER.getBlock().defaultBlockState();
+        BlockState fireState = !alternateFire ? Blocks.FIRE.defaultBlockState()
+                : EIOFluids.FIRE_WATER.getBlock().defaultBlockState();
 //        BlockState fireState = Blocks.FIRE.defaultBlockState();
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0, -0.5, 0);
@@ -213,7 +220,10 @@ public class FireCraftingCategory implements IRecipeCategory<RecipeHolder<FireCr
 //            // TODO: Fixy this
 //            Minecraft.getInstance().getBlockRenderer().renderLiquid(BlockPos.ZERO, Minecraft.getInstance().level, vertex, fireState, EIOFluids.FIRE_WATER.get().defaultFluidState());
 //        } else {
-            Minecraft.getInstance().getBlockRenderer().renderSingleBlock(fireState, guiGraphics.pose(), buffers, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
+        Minecraft.getInstance()
+                .getBlockRenderer()
+                .renderSingleBlock(fireState, guiGraphics.pose(), buffers, LightTexture.FULL_BRIGHT,
+                        OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
 //        }
 
         guiGraphics.pose().popPose();

@@ -1,6 +1,6 @@
 package com.enderio.conduits.common.integrations.jei;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.conduits.common.init.ConduitBlocks;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 public class ConduitsJEI implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return EnderIOBase.loc("conduits");
+        return EnderIO.loc("conduits");
     }
 
     @Override

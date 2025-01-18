@@ -1,17 +1,12 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import static mezz.jei.api.recipe.RecipeIngredientRole.CATALYST;
-import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
-import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
-
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.common.integrations.jei.JEIUtils;
 import com.enderio.machines.common.blocks.slicer.SlicingRecipe;
 import com.enderio.machines.common.init.MachineBlocks;
 import com.enderio.machines.common.integrations.jei.util.MachineRecipeCategory;
 import com.enderio.machines.common.integrations.jei.util.RecipeUtil;
 import com.enderio.machines.common.lang.MachineLang;
-import java.util.List;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -25,12 +20,16 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.List;
+
+import static mezz.jei.api.recipe.RecipeIngredientRole.*;
+
 public class SlicingRecipeCategory extends MachineRecipeCategory<RecipeHolder<SlicingRecipe>> {
 
-    public static final RecipeType<RecipeHolder<SlicingRecipe>> TYPE = JEIUtils
-            .createRecipeType(EnderIOBase.REGISTRY_NAMESPACE, "slicing", SlicingRecipe.class);
+    public static final RecipeType<RecipeHolder<SlicingRecipe>> TYPE = JEIUtils.createRecipeType(EnderIO.NAMESPACE,
+            "slicing", SlicingRecipe.class);
 
-    public static final ResourceLocation BG_TEXTURE = EnderIOBase.loc("textures/gui/viewer/slice_and_splice.png");
+    public static final ResourceLocation BG_TEXTURE = EnderIO.loc("textures/gui/viewer/slice_and_splice.png");
     private static final int WIDTH = 108;
     private static final int HEIGHT = 60;
 

@@ -1,7 +1,12 @@
 package com.enderio.machines.data.reagentdata;
 
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.machines.common.datamap.VatReagent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
@@ -16,18 +21,13 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
 public class ReagentDataProvider implements DataProvider {
 
     private final TagsProvider tagsProvider;
     private final DataProvider dataProvider;
 
-    public ReagentDataProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+    public ReagentDataProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider,
+            ExistingFileHelper existingFileHelper) {
         tagsProvider = new TagsProvider(packOutput, lookupProvider, existingFileHelper);
         dataProvider = new DataProvider(packOutput, lookupProvider);
     }
@@ -59,8 +59,10 @@ public class ReagentDataProvider implements DataProvider {
     private static class TagsProvider extends IntrinsicHolderTagsProvider<Item> {
         private final Map<TagKey<Item>, List<Item>> tagsMap = new HashMap<>();
 
-        protected TagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
-            super(packOutput, Registries.ITEM, provider, item -> item.builtInRegistryHolder().key(), EnderIOBase.REGISTRY_NAMESPACE, existingFileHelper);
+        protected TagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider,
+                @Nullable ExistingFileHelper existingFileHelper) {
+            super(packOutput, Registries.ITEM, provider, item -> item.builtInRegistryHolder().key(), EnderIO.NAMESPACE,
+                    existingFileHelper);
         }
 
         public void addItemTag(TagKey<Item> tag, Item item) {

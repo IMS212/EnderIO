@@ -1,9 +1,9 @@
 package com.enderio.conduits;
 
-import com.enderio.EnderIOBase;
-import com.enderio.conduits.api.EnderIOConduitsRegistries;
-import com.enderio.conduits.api.Conduit;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.data.EIODataProvider;
+import com.enderio.conduits.api.Conduit;
+import com.enderio.conduits.api.EnderIOConduitsRegistries;
 import com.enderio.conduits.common.init.ConduitBlockEntities;
 import com.enderio.conduits.common.init.ConduitBlocks;
 import com.enderio.conduits.common.init.ConduitComponents;
@@ -17,6 +17,7 @@ import com.enderio.conduits.common.integrations.Integrations;
 import com.enderio.conduits.data.ConduitTagProvider;
 import com.enderio.conduits.data.recipe.ConduitRecipes;
 import com.enderio.regilite.Regilite;
+import java.util.Set;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.IEventBus;
@@ -29,16 +30,13 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 
-import java.util.Set;
-
 @EventBusSubscriber(modid = EnderIOConduits.MODULE_MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 @Mod(EnderIOConduits.MODULE_MOD_ID)
 public class EnderIOConduits {
 
     public static final String MODULE_MOD_ID = "enderio_conduits";
-    public static final String REGISTRY_NAMESPACE = EnderIOBase.REGISTRY_NAMESPACE;
 
-    public static Regilite REGILITE = new Regilite(REGISTRY_NAMESPACE);
+    public static Regilite REGILITE = new Regilite(EnderIO.NAMESPACE);
 
     public EnderIOConduits(IEventBus modEventBus, ModContainer modContainer) {
         Conduits.register(modEventBus);
@@ -72,20 +70,21 @@ public class EnderIOConduits {
         var registries = event.getLookupProvider();
 
         var datapackEntriesProvider = pack.addProvider(output -> new DatapackBuiltinEntriesProvider(output, registries,
-            createDatapackEntriesBuilder(), Set.of(REGISTRY_NAMESPACE, MODULE_MOD_ID)));
+                createDatapackEntriesBuilder(), Set.of(EnderIO.NAMESPACE, MODULE_MOD_ID)));
 
         PackOutput packOutput = event.getGenerator().getPackOutput();
 
         EIODataProvider provider = new EIODataProvider("conduits");
 
-        provider.addSubProvider(event.includeServer(), new ConduitTagProvider(packOutput, registries, event.getExistingFileHelper()));
-        provider.addSubProvider(event.includeServer(), new ConduitRecipes(packOutput, datapackEntriesProvider.getRegistryProvider()));
+        provider.addSubProvider(event.includeServer(),
+                new ConduitTagProvider(packOutput, registries, event.getExistingFileHelper()));
+        provider.addSubProvider(event.includeServer(),
+                new ConduitRecipes(packOutput, datapackEntriesProvider.getRegistryProvider()));
 
         event.getGenerator().addProvider(true, provider);
     }
 
     private static RegistrySetBuilder createDatapackEntriesBuilder() {
-        return new RegistrySetBuilder()
-            .add(EnderIOConduitsRegistries.Keys.CONDUIT, Conduits::bootstrap);
+        return new RegistrySetBuilder().add(EnderIOConduitsRegistries.Keys.CONDUIT, Conduits::bootstrap);
     }
 }

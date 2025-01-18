@@ -1,9 +1,6 @@
 package com.enderio.machines.common.integrations.jei.category;
 
-import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
-import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
-
-import com.enderio.EnderIOBase;
+import com.enderio.base.api.EnderIO;
 import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.common.init.EIODataComponents;
 import com.enderio.base.common.init.EIOItems;
@@ -18,9 +15,6 @@ import com.enderio.machines.common.integrations.jei.util.RecipeUtil;
 import com.enderio.machines.common.lang.MachineLang;
 import com.enderio.machines.common.souldata.SoulData;
 import com.enderio.machines.common.souldata.SoulDataReloadListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -38,9 +32,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
+import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
+
 public class SoulBindingCategory extends MachineRecipeCategory<RecipeHolder<SoulBindingRecipe>> {
-    public static final RecipeType<RecipeHolder<SoulBindingRecipe>> TYPE = JEIUtils
-            .createRecipeType(EnderIOBase.REGISTRY_NAMESPACE, "soul_binding", SoulBindingRecipe.class);
+    public static final RecipeType<RecipeHolder<SoulBindingRecipe>> TYPE = JEIUtils.createRecipeType(EnderIO.NAMESPACE,
+            "soul_binding", SoulBindingRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;

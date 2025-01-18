@@ -1,7 +1,6 @@
 package com.enderio.modconduits.mods.mekanism;
 
 import com.enderio.base.api.filter.ResourceFilter;
-import com.enderio.base.common.menu.FluidFilterMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

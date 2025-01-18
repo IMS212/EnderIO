@@ -4,6 +4,7 @@ import com.enderio.base.api.attachment.StoredEntityData;
 import com.enderio.base.common.init.EIODataComponents;
 import com.enderio.base.common.init.EIOItems;
 import com.enderio.base.common.recipe.FluidRecipeInput;
+import com.enderio.base.common.tag.EIOTags;
 import com.enderio.base.common.util.ExperienceUtil;
 import com.enderio.core.common.recipes.OutputStack;
 import com.enderio.machines.common.blocks.base.MachineRecipe;
@@ -12,8 +13,6 @@ import com.enderio.machines.common.souldata.SoulDataReloadListener;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import java.util.List;
-import java.util.Optional;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,6 +29,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.codec.NeoForgeStreamCodecs;
+
+import java.util.List;
+import java.util.Optional;
 
 public record SoulBindingRecipe(ItemStack output, Ingredient input, int energy, int experience,
         Optional<ResourceLocation> entityType, Optional<MobCategory> mobCategory, Optional<String> soulData)
@@ -63,7 +65,9 @@ public record SoulBindingRecipe(ItemStack output, Ingredient input, int energy, 
         ItemStack result = results.getFirst().getItem();
 
         var storedEntityData = vial.getOrDefault(EIODataComponents.STORED_ENTITY, StoredEntityData.EMPTY);
-        result.set(EIODataComponents.STORED_ENTITY, storedEntityData);
+        if (result.is(EIOTags.Items.ENTITY_STORAGE)) {
+            result.set(EIODataComponents.STORED_ENTITY, storedEntityData);
+        }
 
         return results;
     }
