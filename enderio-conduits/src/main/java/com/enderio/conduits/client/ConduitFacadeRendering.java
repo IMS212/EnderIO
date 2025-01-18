@@ -3,6 +3,7 @@ package com.enderio.conduits.client;
 import com.enderio.conduits.client.model.conduit.facades.FacadeHelper;
 import com.enderio.conduits.common.conduit.block.ConduitBundleBlockEntity;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import it.unimi.dsi.fastutil.longs.LongSet;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,17 +30,17 @@ public class ConduitFacadeRendering {
 
     @SubscribeEvent
     static void renderFacade(AddSectionGeometryEvent event) {
-        Map<BlockPos, BlockState> facades = new Object2ObjectOpenHashMap<>();
-
-        Set<BlockPos> blockList = ConduitBundleBlockEntity.CHUNK_FACADES
+        LongSet blockList = ConduitBundleBlockEntity.CHUNK_FACADES
                 .getOrDefault(SectionPos.asLong(event.getSectionOrigin()), null);
 
         if (blockList == null) {
             return;
         }
 
-        for (BlockPos entry : blockList) {
-            facades.put(entry, ConduitBundleBlockEntity.FACADES.get(entry.asLong()));
+        Map<BlockPos, BlockState> facades = new Object2ObjectOpenHashMap<>();
+
+        for (long entry : blockList) {
+            facades.put(BlockPos.of(entry), ConduitBundleBlockEntity.FACADES.get(entry));
         }
 
         if (facades.isEmpty())
@@ -78,13 +79,17 @@ public class ConduitFacadeRendering {
                         .getBlockModelShaper()
                         .getBlockModel(entry.getValue());
 
-                for (var renderType : model.getRenderTypes(entry.getValue(), random, ModelData.EMPTY)) {
+                var modelData = context.getRegion().getModelData(pos);
+
+                modelData = model.getModelData(context.getRegion(), pos, state, modelData);
+
+                for (var renderType : model.getRenderTypes(entry.getValue(), random, modelData)) {
                     VertexConsumer consumer = wrapper == null ? context.getOrCreateChunkBuffer(renderType) : wrapper;
                     Minecraft.getInstance()
                             .getBlockRenderer()
                             .getModelRenderer()
                             .tesselateBlock(context.getRegion(), model, state, pos, context.getPoseStack(), consumer,
-                                    true, random, 42L, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
+                                    true, random, 42L, OverlayTexture.NO_OVERLAY, modelData, renderType);
                 }
 
                 context.getPoseStack().popPose();

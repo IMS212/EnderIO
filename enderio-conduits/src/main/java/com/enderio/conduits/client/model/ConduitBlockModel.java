@@ -62,6 +62,8 @@ import org.joml.Vector3f;
 
 public class ConduitBlockModel implements IDynamicBakedModel {
 
+    private static final ChunkRenderTypeSet CUTOUT_SET = ChunkRenderTypeSet.of(RenderType.cutout());
+
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand,
             ModelData extraData, @Nullable RenderType renderType) {
@@ -323,7 +325,7 @@ public class ConduitBlockModel implements IDynamicBakedModel {
     @Override
     public ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand,
             @NotNull ModelData data) {
-        return ChunkRenderTypeSet.of(RenderType.cutout());
+        return CUTOUT_SET;
     }
 
     @Override
